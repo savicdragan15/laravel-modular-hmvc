@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Cart\Http\Controllers;
+namespace Modules\Cart\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,7 +14,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart::index');
+        return view('cart::frontend.index');
     }
 
     /**

@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
-    
+
     /**
      * Convert an authentication exception into a response.
      *
@@ -68,7 +68,7 @@ class Handler extends ExceptionHandler
         }
 
         $guard = array_get($exception->guards(), 0);
-
+        
         switch ($guard) {
             case 'admin':
                 $login = 'admin.login';

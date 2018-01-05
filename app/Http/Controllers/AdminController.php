@@ -17,7 +17,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        dd('index');
+        return view('cart::admin.index');
     }
 
     /**

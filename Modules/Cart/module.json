@@ -4,11 +4,11 @@
     "description": "",
     "keywords": [],
     "active": 1,
-    "order": 0,
+    "order": 3,
     "providers": [
         "Modules\\Cart\\Providers\\CartServiceProvider"
     ],
-    "aliases": {},
+    "aliases": [],
     "files": [
         "start.php"
     ],

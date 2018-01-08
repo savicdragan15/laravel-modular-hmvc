@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'name' => 'Cart'
+    'name' => 'Cart',
+    'icon' => 'fa fa-shopping-cart'
 ];

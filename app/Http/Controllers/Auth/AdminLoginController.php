@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\ValidationException;
 use Auth;
 
 class AdminLoginController extends Controller
@@ -33,6 +34,8 @@ class AdminLoginController extends Controller
             // If successful, then redirect to their intended location
             return redirect()->intended(route('admin.dashboard'));
         }
+        
+        return $this->sendFailedLoginResponse($request);
 
         // If unsuccessful, then redirect back to the login with the form data
         return redirect()->back()->withInput($request->only('email', 'remember'));
@@ -45,5 +48,20 @@ class AdminLoginController extends Controller
         $request->session()->regenerate();
 
         return redirect()->route($this->redirectAfterLogout);
+    }
+    
+    /**
+     * Get the failed login response instance.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws ValidationException
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            'field' => [trans('auth.failed')],
+        ]);
     }
 }

@@ -17,7 +17,7 @@
 					<div class="m-messenger__messages">
 						<div class="m-messenger__message m-messenger__message--in">
 							<div class="m-messenger__message-pic">
-								<img src="./assets/app/media/img//users/user3.jpg" alt="">
+								<img src="{{ asset('assets/admin/app/media/img/users/user3.jpg') }}" alt="">
 							</div>
 							<div class="m-messenger__message-body">
 								<div class="m-messenger__message-arrow"></div>
@@ -43,7 +43,7 @@
 						</div>
 						<div class="m-messenger__message m-messenger__message--in">
 							<div class="m-messenger__message-pic">
-								<img src="./assets/app/media/img//users/user3.jpg" alt="">
+								<img src="{{ asset('assets/admin/app/media/img/users/user3.jpg') }}" alt="">
 							</div>
 							<div class="m-messenger__message-body">
 								<div class="m-messenger__message-arrow"></div>
@@ -70,7 +70,7 @@
 						<div class="m-messenger__datetime">2:30PM</div>
 						<div class="m-messenger__message m-messenger__message--in">
 							<div class="m-messenger__message-pic">
-								<img src="./assets/app/media/img//users/user3.jpg" alt="">
+								<img src="{{ asset('assets/admin/app/media/img/users/user3.jpg') }}" alt="">
 							</div>
 							<div class="m-messenger__message-body">
 								<div class="m-messenger__message-arrow"></div>
@@ -133,7 +133,7 @@
 						</div>
 						<div class="m-messenger__message m-messenger__message--in">
 							<div class="m-messenger__message-pic">
-								<img src="./assets/app/media/img//users/user3.jpg" alt="">
+								<img src="{{ asset('assets/admin/app/media/img/users/user3.jpg') }}" alt="">
 							</div>
 							<div class="m-messenger__message-body">
 								<div class="m-messenger__message-arrow"></div>

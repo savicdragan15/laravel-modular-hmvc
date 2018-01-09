@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- 
+<!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
 Version: 5.0.6.1
 Author: KeenThemes
@@ -33,12 +33,12 @@ License: You must have a valid license purchased only from themeforest(the above
           });
 		</script>
 		<!--end::Web font -->
-        <!--begin::Base Styles -->  
+        <!--begin::Base Styles -->
         <!--begin::Page Vendors -->
-		<link href="{{ asset('assets/admin/vendors/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<!--end::Page Vendors -->
 		<link href="{{ asset('assets/admin/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/admin/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+		@yield('styles')
 		<!--end::Base Styles -->
 		<link rel="shortcut icon" href="{{ asset('assets/admin/demo/default/media/img/logo/favicon.ico') }}" />
 	</head>
@@ -47,7 +47,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default"  >
 		<!-- begin:: Page -->
 		<div class="m-grid m-grid--hor m-grid--root m-page">
-			@include('admin.layouts.partials.header')	
+			@include('admin.layouts.partials.header')
 		<!-- begin::Body -->
                 <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
                 <!-- BEGIN: Left Aside -->
@@ -63,7 +63,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="m-grid__item m-grid__item--fluid m-wrapper">
                     @yield('content')
                 </div>
-		      
+
                 </div>
                 <!-- end:: Body -->
 <!-- begin::Footer -->
@@ -703,24 +703,35 @@ License: You must have a valid license purchased only from themeforest(the above
 				</div>
 			</div>
 		</div>
-		<!-- end::Quick Sidebar -->		    
+		<!-- end::Quick Sidebar -->
 	    <!-- begin::Scroll Top -->
 		<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
 			<i class="la la-arrow-up"></i>
 		</div>
-		<!-- end::Scroll Top -->		    
-                
-                	
+		<!-- end::Scroll Top -->
+
+
     	<!--begin::Base Scripts -->
 		<script src="{{ asset('assets/admin/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('assets/admin/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
-		<!--end::Base Scripts -->   
+		<!--end::Base Scripts -->
         <!--begin::Page Vendors -->
 		<script src="{{ asset('assets/admin/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
-		<!--end::Page Vendors -->  
+		<!--end::Page Vendors -->
         <!--begin::Page Snippets -->
 		<script src="{{ asset('assets/admin/app/js/dashboard.js') }}" type="text/javascript"></script>
 		<!--end::Page Snippets -->
+
+           <script>
+                $(document).ready(function(){
+                    var link = $('.m-menu__nav').find("a[href$='{{ \Request::url() }}']");
+                    link.parent().addClass('m-menu__item--active');
+
+                    link.parent('div').css('display', 'block');
+                    link.parent().parent().parent().parent().addClass('m-menu__item--expanded m-menu__item--open');
+
+                });
+           </script>
 	</body>
 	<!-- end::Body -->
 </html>

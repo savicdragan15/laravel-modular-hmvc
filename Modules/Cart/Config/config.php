@@ -2,5 +2,5 @@
 
 return [
     'name' => 'Cart',
-    'icon' => 'fa fa-shopping-cart'
+    'admin_sidebar_icon' => 'fa fa-shopping-cart'
 ];

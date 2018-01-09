@@ -2,5 +2,5 @@
 
 return [
     'name' => 'User',
-    'icon' => 'fa fa-user'
+    'admin_sidebar_icon' => 'fa fa-user'
 ];

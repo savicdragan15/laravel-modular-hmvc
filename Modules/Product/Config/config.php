@@ -2,5 +2,5 @@
 
 return [
     'name' => 'Product',
-    'icon' => 'fa fa-microchip'
+    'admin_sidebar_icon' => 'fa fa-microchip'
 ];

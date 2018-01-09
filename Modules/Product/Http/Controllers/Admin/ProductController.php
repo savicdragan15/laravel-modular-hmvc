@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    
+
     /**
      * Display a listing of the resource.
      * @return Response
@@ -33,7 +33,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product::create');
+        return view('product::admin.create');
     }
 
     /**

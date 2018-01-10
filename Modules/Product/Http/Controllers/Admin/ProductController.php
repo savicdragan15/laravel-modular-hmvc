@@ -5,6 +5,7 @@ namespace Modules\Product\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Product\Entities\Models\Product;
 
 class ProductController extends Controller
 {
@@ -24,7 +25,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('product::admin.index');
+        $products = Product::paginate(10);
+        
+        return view('product::admin.index', compact('products'));
     }
 
     /**
@@ -60,7 +63,7 @@ class ProductController extends Controller
      */
     public function edit()
     {
-        return view('product::edit');
+        return view('product::admin.edit');
     }
 
     /**

@@ -716,22 +716,24 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="{{ asset('assets/admin/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
 		<!--end::Base Scripts -->
         <!--begin::Page Vendors -->
-		<script src="{{ asset('assets/admin/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
 		<!--end::Page Vendors -->
         <!--begin::Page Snippets -->
-		<script src="{{ asset('assets/admin/app/js/dashboard.js') }}" type="text/javascript"></script>
+		{{-- <script src="{{ asset('assets/admin/app/js/dashboard.js') }}" type="text/javascript"></script> --}}
 		<!--end::Page Snippets -->
 
-           <script>
-                $(document).ready(function(){
-                    var link = $('.m-menu__nav').find("a[href$='{{ \Request::url() }}']");
-                    link.parent().addClass('m-menu__item--active');
+   <script>
+        $(document).ready(function(){
+            var link = $('.m-menu__nav').find("a[href$='{{ \Request::url() }}']");
+            link.parent().addClass('m-menu__item--active');
 
-                    link.parent('div').css('display', 'block');
-                    link.parent().parent().parent().parent().addClass('m-menu__item--expanded m-menu__item--open');
+            link.parent('div').css('display', 'block');
+            link.parent().parent().parent().parent().addClass('m-menu__item--expanded m-menu__item--open');
 
-                });
-           </script>
+        });
+   </script>
+
+	 @yield('scripts')
+
 	</body>
 	<!-- end::Body -->
 </html>

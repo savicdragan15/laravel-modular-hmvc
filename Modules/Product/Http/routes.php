@@ -14,5 +14,5 @@ Route::resource('admin/product', 'Modules\Product\Http\Controllers\Admin\Product
 // Admin custom routes
 Route::group(['middleware' => 'web', 'prefix' => 'admin/product', 'namespace' => 'Modules\Product\Http\Controllers'], function()
 {
-
+    Route::get('datatables/data', 'Admin\ProductController@getData')->name('admin.product.datatables.data');
 });

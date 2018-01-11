@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\User\Http\Controllers;
+namespace Modules\Gallery\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
-class UserController extends Controller
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user::index');
+        return view('gallery::index');
     }
 
     /**
@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user::create');
+        return view('gallery::create');
     }
 
     /**
@@ -41,7 +41,7 @@ class UserController extends Controller
      */
     public function show()
     {
-        return view('user::show');
+        return view('gallery::show');
     }
 
     /**
@@ -50,7 +50,7 @@ class UserController extends Controller
      */
     public function edit()
     {
-        return view('user::edit');
+        return view('gallery::edit');
     }
 
     /**

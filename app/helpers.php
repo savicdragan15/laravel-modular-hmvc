@@ -15,3 +15,19 @@ function setDisplayBlock($path)
 {
     return Request::is($path . '*') ? 'style="display: block;"' :  '';
 }
+
+/**
+ * Get
+ * @return array
+ */
+function getAllRoutes()
+{
+  $routeArray = [];
+  $allRoutes = Route::getRoutes();
+
+  foreach ($allRoutes as $key => $route) {
+    $routeArray[] = $route->getName();
+  }
+
+  return $routeArray;
+}

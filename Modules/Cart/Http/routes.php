@@ -14,5 +14,5 @@ Route::resource('admin/cart', 'Modules\Cart\Http\Controllers\Admin\CartControlle
 // Admin custom routes
 Route::group(['middleware' => 'web', 'prefix' => 'admin/cart', 'namespace' => 'Modules\Cart\Http\Controllers'], function()
 {
-    
+
 });

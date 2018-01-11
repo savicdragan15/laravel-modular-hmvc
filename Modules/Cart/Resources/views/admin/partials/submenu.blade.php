@@ -4,12 +4,12 @@
                 <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" >
                         <span class="m-menu__link">
                                 <span class="m-menu__link-text">
-                                        Base
+                                        {{ $module->getName() }}
                                 </span>
                         </span>
                 </li>
                 <li class="m-menu__item " aria-haspopup="true" >
-                        <a  href="{{ url('admin/cart') }}" class="m-menu__link ">
+                        <a  href="{{ route('admin.cart.index') }}" class="m-menu__link ">
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                         <span></span>
                                 </i>

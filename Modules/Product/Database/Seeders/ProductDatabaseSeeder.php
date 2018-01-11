@@ -2,6 +2,7 @@
 
 namespace Modules\Product\Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,6 +25,8 @@ class ProductDatabaseSeeder extends Seeder
                 'price' => 500.00,
                 'order_num' => $i,
                 'slug' => str_slug('Product '. $i, '-'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
                 'active' => 1
             ]);
         }

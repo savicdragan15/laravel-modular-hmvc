@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Product\Entities\Models\Product;
+use DataTables;
 
 class ProductController extends Controller
 {
@@ -26,7 +27,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(10);
-        
+
         return view('product::admin.index', compact('products'));
     }
 
@@ -81,5 +82,12 @@ class ProductController extends Controller
      */
     public function destroy()
     {
+    }
+
+    public function getData()
+    {
+      $products = Product::all();
+
+      return Datatables::of($products)->make(true);
     }
 }

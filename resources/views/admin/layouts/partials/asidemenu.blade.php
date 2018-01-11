@@ -32,11 +32,11 @@
             @foreach(Module::getOrdered() as $module)
                     <li class="m-menu__item  m-menu__item--submenu {{ setActive('admin/'.$module->getLowerName()) }}" aria-haspopup="true"  data-menu-submenu-toggle="hover">
                             <a  href="#" class="m-menu__link m-menu__toggle">
-                                    <i class="m-menu__link-icon {{ config($module->getLowerName().'.admin_sidebar_icon') }}"></i>
-                                    <span class="m-menu__link-text">
-                                            {{ $module->getName() }}
-                                    </span>
-                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                  <i class="m-menu__link-icon {{ config($module->getLowerName().'.icon') }}"></i>
+                                  <span class="m-menu__link-text">
+                                          {{ $module->getName() }}
+                                  </span>
+                                  <i class="m-menu__ver-arrow la la-angle-right"></i>
                             </a>
                             @if(View::exists($module->getLowerName().'::admin.partials.submenu'))
                                 @include($module->getLowerName().'::admin.partials.submenu')

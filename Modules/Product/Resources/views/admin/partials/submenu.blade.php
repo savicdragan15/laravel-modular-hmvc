@@ -4,7 +4,7 @@
                 <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" >
                         <span class="m-menu__link">
                                 <span class="m-menu__link-text">
-                                        Base
+                                      {{ $module->getName() }}
                                 </span>
                         </span>
                 </li>

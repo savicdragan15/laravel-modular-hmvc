@@ -38,6 +38,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--end::Page Vendors -->
 		<link href="{{ asset('assets/admin/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/admin/demo/default/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/admin/custom.css') }}" rel="stylesheet" type="text/css" />
 		@yield('styles')
 		<!--end::Base Styles -->
 		<link rel="shortcut icon" href="{{ asset('assets/admin/demo/default/media/img/logo/favicon.ico') }}" />

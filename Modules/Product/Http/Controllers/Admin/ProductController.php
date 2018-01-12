@@ -55,6 +55,7 @@ class ProductController extends Controller
      */
     public function show()
     {
+        dd('show');
         return view('product::show');
     }
 
@@ -62,9 +63,11 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('product::admin.edit');
+        $product = Product::findOrFail($id);
+
+        return view('product::admin.edit', compact('product'));
     }
 
     /**
@@ -74,6 +77,7 @@ class ProductController extends Controller
      */
     public function update(Request $request)
     {
+      dd($request->all());
     }
 
     /**

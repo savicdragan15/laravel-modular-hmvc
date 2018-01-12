@@ -1,0 +1,7 @@
+.pagination { font-size: 14px; }
+.pagination li { margin-right: 5px; border-radius: 15px;}
+.pagination li:hover { background-color: #eaeaea;}
+.pagination li.active span { color: white; background: #716aca; padding: 5px 10px; border-radius: 15px;}
+.pagination li.disabled, .pagination li.active { cursor: not-allowed;}
+.pagination li a { text-decoration: none; color: black; padding: 5px 10px;}
+.pagination li a:hover { background-color: #eaeaea; border-radius: 15px;}

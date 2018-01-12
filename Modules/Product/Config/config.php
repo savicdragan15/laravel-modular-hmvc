@@ -2,5 +2,6 @@
 
 return [
     'name' => 'Product',
-    'icon' => 'fa fa-microchip'
+    'icon' => 'fa fa-microchip',
+    'currency' => 'RSD',
 ];

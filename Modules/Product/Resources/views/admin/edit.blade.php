@@ -52,7 +52,7 @@
 </div>
 <!-- END: Subheader -->
 <div class="m-content">
- {{-- {{ dump($product) }} --}}
+  {{ debug($product) }}
     <div class="row">
     <div class="col-md-12">
         <div class="m-portlet">

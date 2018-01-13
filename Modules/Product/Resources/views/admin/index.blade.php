@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('content')
-
+{{ debug($products) }}
 <!-- BEGIN: Subheader -->
 <div class="m-subheader ">
         <div class="d-flex align-items-center">
@@ -186,10 +186,10 @@
                                   {{ number_format($product->price, 2) }} {{ config('product.currency') }}
   															</td>
   															<td class="text-center">
-                                  <i> {{ $product->created_at ? $product->created_at->format('m.d.Y. H:i') : '/' }} </i>
+                                  <i> {{ $product->created_at ? $product->created_at->format('d.m.Y. H:i') : '/' }} </i>
   															</td>
                                 <td class="text-center">
-                                  <i> {{ $product->updated_at ? $product->updated_at->format('m.d.Y. H:i') : '/' }} </i>
+                                  <i> {{ $product->updated_at ? $product->updated_at->format('d.m.Y. H:i') : '/' }} </i>
                                 </td>
                                 <td class="text-center">
                                   {!! $product->active ? '<span class="m-badge  m-badge--success m-badge--wide">Active</span>' : '<span class="m-badge  m-badge--danger m-badge--wide">Inactive</span>' !!}

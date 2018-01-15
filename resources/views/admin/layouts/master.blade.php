@@ -715,6 +715,7 @@ License: You must have a valid license purchased only from themeforest(the above
     	<!--begin::Base Scripts -->
 		<script src="{{ asset('assets/admin/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('assets/admin/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('assets/admin/custom.js') }}" type="text/javascript"></script>
 		<!--end::Base Scripts -->
         <!--begin::Page Vendors -->
 		<!--end::Page Vendors -->

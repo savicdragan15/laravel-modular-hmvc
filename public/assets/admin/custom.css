@@ -5,3 +5,6 @@
 .pagination li.disabled, .pagination li.active { cursor: not-allowed;}
 .pagination li a { text-decoration: none; color: black; padding: 5px 10px;}
 .pagination li a:hover { background-color: #eaeaea; border-radius: 15px;}
+
+.has-error { border-color: #f4516c;}
+span.has-error { color: #f4516c !important; }

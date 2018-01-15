@@ -72,7 +72,7 @@
     <form action="{{ route('admin.product.update', ['id' => $product->id]) }}" method="POST" class="m-form">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
-            @include('product::admin.partials.form');
+            @include('product::admin.partials.form')
             <div class="m-portlet__foot m-portlet__foot--fit">
                     <div class="m-form__actions m-form__actions">
                             <button type="submit" class="btn btn-primary">
@@ -92,3 +92,23 @@
 </div>
 
 @stop
+
+@section('scripts')
+  <script type="text/javascript">
+
+       $(document).ready(function(){
+          // $('.m_selectpicker').selectpicker();
+
+          $('.m_selectpicker').select2({
+            placeholder: "Select a category"
+          });
+
+          //populate select2
+          $('#category_id').val({!! $product->format('categories') !!}).trigger('change');
+          $('#subcategory_id').val({!! $product->format('subcategories') !!}).trigger('change');
+          $('#subsubcategory_id').val({!! $product->format('subsubcategories') !!}).trigger('change');
+          
+       });
+
+  </script>
+@endsection

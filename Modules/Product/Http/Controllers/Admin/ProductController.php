@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Product\Entities\Models\Product;
+use Modules\Product\Entities\Models\ProductCategory;
+use Modules\Product\Http\Requests\CreateProductRequest;
+use Modules\Product\Http\Requests\UpdateProductRequest;
 use DataTables;
 
 class ProductController extends Controller
@@ -26,9 +29,10 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $categories = ProductCategory::where(['parent_id' => null, 'subparent_id' => null])->get();
         $products = Product::orderBy('created_at', 'DESC')->paginate(10);
-        
-        return view('product::admin.index', compact('products'));
+
+        return view('product::admin.index', compact('products', 'categories'));
     }
 
     /**
@@ -37,7 +41,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product::admin.create');
+        $categories = ProductCategory::where(['parent_id' => null, 'subparent_id' => null])->get();
+
+        return view('product::admin.create', compact('categories'));
     }
 
     /**
@@ -45,8 +51,9 @@ class ProductController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
+      dd($request->all());
     }
 
     /**
@@ -66,8 +73,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
+        $categories = ProductCategory::where(['parent_id' => null, 'subparent_id' => null])->get();
 
-        return view('product::admin.edit', compact('product'));
+        return view('product::admin.edit', compact('product', 'categories'));
     }
 
     /**
@@ -75,9 +83,20 @@ class ProductController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(UpdateProductRequest  $request, $id)
     {
-      dd($request->all());
+      $ids = array_merge(
+        is_array($request->input('category_id')) ? $request->input('category_id') : [],
+        is_array($request->input('subcategory_id')) ? $request->input('subcategory_id') : [],
+        is_array($request->input('subsubcategory_id')) ? $request->input('subsubcategory_id') : []
+      );
+
+      $product = Product::findOrFail($id);
+      $product->active = !is_null($request->input('active')) && $request->input('active') == 1 ? 1 : 0;
+      $product->update($request->all());
+      $product->allCategories()->sync($ids);
+
+      return redirect()->route('admin.product.edit', $id);
     }
 
     /**
@@ -88,10 +107,4 @@ class ProductController extends Controller
     {
     }
 
-    public function getData()
-    {
-      $products = Product::all();
-
-      return Datatables::of($products)->make(true);
-    }
 }

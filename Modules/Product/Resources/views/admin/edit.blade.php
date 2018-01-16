@@ -63,7 +63,7 @@
                                               <i class="la la-gear"></i>
                                       </span>
                                       <h3 class="m-portlet__head-text">
-                                              Default Form Layout
+                                              Edit product - {{ $product->name }}
                                       </h3>
                               </div>
                       </div>
@@ -73,15 +73,18 @@
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             @include('product::admin.partials.form')
+
             <div class="m-portlet__foot m-portlet__foot--fit">
-                    <div class="m-form__actions m-form__actions">
-                            <button type="submit" class="btn btn-primary">
-                                    Submit
-                            </button>
-                            <button type="reset" class="btn btn-secondary">
-                                    Cancel
-                            </button>
-                    </div>
+                <div class="m-form__actions m-form__actions">
+                    <button class="btn btn-brand m-btn m-btn--custom m-btn--icon pull-right" type="submit">
+											<span>
+												<i class="fa fa-save"></i>
+												<span>
+													Save
+												</span>
+											</span>
+										</button>
+                </div>
             </div>
     </form>
     <!--end::Form-->
@@ -107,7 +110,7 @@
           $('#category_id').val({!! $product->format('categories') !!}).trigger('change');
           $('#subcategory_id').val({!! $product->format('subcategories') !!}).trigger('change');
           $('#subsubcategory_id').val({!! $product->format('subsubcategories') !!}).trigger('change');
-          
+          $('#lfm').filemanager('image');
        });
 
   </script>

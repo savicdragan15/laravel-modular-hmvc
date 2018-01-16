@@ -63,7 +63,7 @@
                                             <i class="la la-gear"></i>
                                     </span>
                                     <h3 class="m-portlet__head-text">
-                                            Default Form Layout
+                                            Create new product
                                     </h3>
                             </div>
                     </div>

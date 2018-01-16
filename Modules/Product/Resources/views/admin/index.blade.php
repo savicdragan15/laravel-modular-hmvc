@@ -153,6 +153,9 @@
 															<th class="text-center">
 																#
 															</th>
+                              <th class="text-center">
+                                Featured image
+                              </th>
 															<th>
 																Name
 															</th>
@@ -179,6 +182,9 @@
   															<th scope="row" class="text-center">
                                   {{ $product->id }}
   															</th>
+                                <th class="text-center">
+                                   <img src="{{ $product->featured_image ? asset($product->featured_image) : asset('assets/admin/no-image.png') }}" alt="" width="50" title="Featured image">
+                                </th>
   															<td>
                                   {{ $product->name }}
   															</td>

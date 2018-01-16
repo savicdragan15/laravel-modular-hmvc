@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['name', 'price', 'slug', 'seo_title', 'seo_description', 'seo_keywords', 'order_num', 'active'];
+    protected $fillable = ['name', 'description', 'featured_image', 'price', 'slug', 'seo_title', 'seo_description', 'seo_keywords', 'order_num', 'active'];
 
     /**
      * The attributes that should be mutated to dates.

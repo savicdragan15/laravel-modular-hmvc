@@ -16,16 +16,11 @@
 							<label class="">
 								Categories:
 							</label>
-							{{-- <input type="email" class="form-control m-input" placeholder="Enter contact number"> --}}
               <select class="form-control m-bootstrap-select m_selectpicker" multiple name="category_id[]" id="category_id">
                 @foreach ($categories as $key => $category)
                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
               </select>
-
-							<span class="m-form__help">
-								Please enter your contact number
-							</span>
 						</div>
 					</div>
 
@@ -50,7 +45,6 @@
 							<label class="">
 								Sub Categories:
 							</label>
-							{{-- <input type="email" class="form-control m-input" placeholder="Enter contact number"> --}}
               <select class="form-control m-bootstrap-select m_selectpicker" multiple name="subcategory_id[]" id="subcategory_id">
                 @foreach ($categories as $key => $category)
                   <optgroup label="{{ $category->name }}">
@@ -61,9 +55,7 @@
 
                 @endforeach
               </select>
-							<span class="m-form__help">
-								Please enter your contact number
-							</span>
+
 						</div>
 					</div>
 
@@ -90,11 +82,11 @@
 							<label class="">
 								Sub Sub Categories:
 							</label>
-							{{-- <input type="email" class="form-control m-input" placeholder="Enter contact number"> --}}
+
               <select class="form-control m-bootstrap-select m_selectpicker" multiple name="subsubcategory_id[]" id="subsubcategory_id">
                 @foreach ($categories as $key => $category)
                       @foreach ($category->subcategories as $key => $subcatgory)
-                        <optgroup label="{{ $subcatgory->name }}">
+                        <optgroup label="{{ $category->name }} -> {{ $subcatgory->name }}">
                         @foreach ($subcatgory->subsubcategories as $key => $subsubcategory)
                             <option value="{{ $subsubcategory->id }}">{{ $subsubcategory->name }}</option>
                         @endforeach
@@ -102,19 +94,67 @@
                       @endforeach
                 @endforeach
               </select>
-							<span class="m-form__help">
-								Please enter your contact number
-							</span>
+
 						</div>
+					</div>
+					<div class="m-form__group form-group row">
+							<div class="col-md-6">
+								<label class="m-checkbox m-checkbox--state-brand">
+										<input type="checkbox" {{ isset($product) && $product->active == 1 ? 'checked' : '' }} value="{{ isset($product) ? $product->active : 0 }}" name="active" id="active">
+										Active
+										<span></span>
+								</label>
+							</div>
+
+							<div class="col-md-6">
+								<label>Featured image: </label>
+								<div class="input-group">
+							    <span class="input-group-btn">
+										 <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-brand" style="color: white;">
+										 	 <i class="fa fa-picture-o"></i> Choose
+										 </a>
+
+							    </span>
+							     <input id="thumbnail" class="form-control" type="hidden" name="featured_image" value="{{ isset($product) && !is_null($product->featured_image) ? $product->featured_image : asset('assets/admin/no-image.png') }}">
+							</div>
+							<img id="holder" style="margin-top:15px;max-height:100px;" src="{{ isset($product) && !is_null($product->featured_image) ? asset($product->featured_image) : asset('assets/admin/no-image.png') }}">
+							</div>
 					</div>
 
 						<div class="m-form__group form-group row">
-								<div class="col-6">
-									<label class="m-checkbox m-checkbox--state-brand">
-											<input type="checkbox" {{ isset($product) && $product->active == 1 ? 'checked' : '' }} value="{{ isset($product) ? $product->active : 0 }}" name="active" id="active">
-											Active
-											<span></span>
-									</label>
+								<div class="col-md-12">
+										<label> Description: </label>
+										<textarea name="description" class="ckeditor" rows="8" cols="80">{!! isset($product) ? $product->description : '' !!}</textarea>
 								</div>
 						</div>
+
+
+
+
+						<div class="m-form__group form-group row">
+							<div class="col-lg-6">
+								<label>
+									Seo title:
+								</label>
+								<input type="text" name="seo_title" class="form-control m-input {{ $errors->has('seo_title') ? 'has-error' : '' }} " placeholder="Seo title" value="{{ isset($product) ? $product->seo_title : null }}">
+
+							</div>
+							<div class="col-lg-6">
+								<label>
+									Seo title:
+								</label>
+								<input type="text" name="seo_keywords" class="form-control m-input {{ $errors->has('seo_keywords') ? 'has-error' : '' }} " placeholder="Seo keywords" value="{{ isset($product) ? $product->seo_keywords : null }}">
+
+							</div>
+						</div>
+
+						<div class="m-form__group form-group row">
+								<div class="col-md-12">
+									<label>
+										  Seo description:
+									</label>
+									<textarea name="seo_description" class="form-control m-input m-input--air"  rows="10">{!! isset($product) ? $product->seo_description : '' !!}</textarea>
+								</div>
+						</div>
+
 		</div>

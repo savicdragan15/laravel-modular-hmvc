@@ -715,7 +715,25 @@ License: You must have a valid license purchased only from themeforest(the above
     	<!--begin::Base Scripts -->
 		<script src="{{ asset('assets/admin/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('assets/admin/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('assets/admin/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
 		<script src="{{ asset('assets/admin/custom.js') }}" type="text/javascript"></script>
+
+		<script>
+	   var route_prefix = "{{ url(config('lfm.url_prefix', config('lfm.prefix'))) }}";
+	  </script>
+
+		<script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/adapters/jquery.js"></script>
+		<script>
+			var ckeditor = $('.ckeditor').ckeditor({
+				height: 250,
+				filebrowserImageBrowseUrl: route_prefix + '?type=Images',
+				filebrowserImageUploadUrl: route_prefix + '/upload?type=Images&_token={{csrf_token()}}',
+				filebrowserBrowseUrl: route_prefix + '?type=Files',
+				filebrowserUploadUrl: route_prefix + '/upload?type=Files&_token={{csrf_token()}}'
+			});
+
+		</script>
 		<!--end::Base Scripts -->
         <!--begin::Page Vendors -->
 		<!--end::Page Vendors -->

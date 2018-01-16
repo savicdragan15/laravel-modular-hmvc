@@ -26,4 +26,8 @@ Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
 
-
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::get('/laravel-filemanager', '\Unisharp\Laravelfilemanager\controllers\LfmController@show');
+    Route::post('/laravel-filemanager/upload', '\Unisharp\Laravelfilemanager\controllers\UploadController@upload');
+    // list all lfm routes here...
+});

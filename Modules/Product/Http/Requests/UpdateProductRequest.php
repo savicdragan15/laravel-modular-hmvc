@@ -24,9 +24,11 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules()
     {
+        $id = \Request::segment(3);
+
         return [
            'name' => 'required',
-           'slug' => 'required',
+           'slug' => 'required|unique:products,slug,'.$id,
         ];
     }
 }

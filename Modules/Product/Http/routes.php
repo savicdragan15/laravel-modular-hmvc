@@ -10,6 +10,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'product', 'namespace' => 'Modu
 
 // Admin RESTFULL routes
 Route::resource('admin/product', 'Modules\Product\Http\Controllers\Admin\ProductController', ['middleware' => 'web', 'as' => 'admin', 'prefix' => 'admin']);
+Route::resource('admin/productimage', 'Modules\Product\Http\Controllers\Admin\ImageController', ['middleware' => 'web', 'as' => 'admin', 'prefix' => 'admin']);
 
 // Admin custom routes
 Route::group(['middleware' => 'web', 'prefix' => 'admin/product', 'namespace' => 'Modules\Product\Http\Controllers'], function()

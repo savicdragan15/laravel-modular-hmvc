@@ -1,5 +1,9 @@
 @extends('admin.layouts.master')
 
+@section('title')
+   All Products
+@endsection
+
 @section('content')
 {{ debug($products) }}
 <!-- BEGIN: Subheader -->

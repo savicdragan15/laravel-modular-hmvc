@@ -7,7 +7,7 @@
       var route_prefix = (options && options.prefix) ? options.prefix : '/laravel-filemanager';
       localStorage.setItem('target_input', $(this).data('input'));
       localStorage.setItem('target_preview', $(this).data('preview'));
-      window.open(route_prefix + '?type=' + type, 'FileManager', 'width=900,height=600');
+      window.open(route_prefix + '?type=' + type, 'FileManager', 'width=1200,height=600');
       window.SetUrl = function (url, file_path) {
           console.log(file_path);
           console.log(url);

@@ -29,10 +29,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $categories = ProductCategory::where(['parent_id' => null, 'subparent_id' => null])->get();
         $products = Product::orderBy('created_at', 'DESC')->paginate(10);
 
-        return view('product::admin.index', compact('products', 'categories'));
+        return view('product::admin.index', compact('products'));
     }
 
     /**
@@ -53,7 +52,12 @@ class ProductController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
-      dd($request->all());
+      $product = Product::create($request->all());
+
+      \Session::flash('class','success');
+      \Session::flash('message','Product successfully saved.');
+
+      return redirect()->route('admin.product.edit', $product->id);
     }
 
     /**
@@ -93,8 +97,16 @@ class ProductController extends Controller
 
       $product = Product::findOrFail($id);
       $product->active = !is_null($request->input('active')) && $request->input('active') == 1 ? 1 : 0;
-      $product->update($request->all());
+      $isSave = $product->update($request->all());
       $product->allCategories()->sync($ids);
+
+      \Session::flash('class','success');
+      \Session::flash('message','Product successfully saved.');
+
+      if(!$isSave){
+        \Session::flash('class','danger');
+        \Session::flash('message','Product not saved.');
+      }
 
       return redirect()->route('admin.product.edit', $id);
     }

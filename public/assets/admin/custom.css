@@ -8,3 +8,6 @@
 
 .has-error { border-color: #f4516c;}
 span.has-error { color: #f4516c !important; }
+
+#sortable { list-style: none; padding: 10px; padding: 2.2rem 2.2rem;}
+#sortable li { display: inline-block; overflow: hidden; cursor: move; padding: 1px; margin: 5px; height: 280px;}

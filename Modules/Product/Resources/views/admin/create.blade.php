@@ -1,5 +1,9 @@
 @extends('admin.layouts.master')
 
+@section('title')
+   Create Product
+@endsection
+
 @section('content')
 
 <!-- BEGIN: Subheader -->

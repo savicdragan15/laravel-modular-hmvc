@@ -17,10 +17,11 @@ License: You must have a valid license purchased only from themeforest(the above
 	<head>
 		<meta charset="utf-8" />
 		<title>
-			Metronic | Dashboard
+			@yield('title') - Savickas CMS
 		</title>
 		<meta name="description" content="Latest updates and statistic charts">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!--begin::Web font -->
 		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
@@ -717,6 +718,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="{{ asset('assets/admin/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('assets/admin/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
+		<script src="{{ asset('vendor/laravel-filemanager/js/upload-image.js') }}"></script>
 		<script src="{{ asset('assets/admin/custom.js') }}" type="text/javascript"></script>
 
 		<script>

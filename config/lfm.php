@@ -43,7 +43,7 @@ return [
 
     // Which folder to store files in project, fill in 'public', 'resources', 'storage' and so on.
     // You should create routes to serve images if it is not set to public.
-    'base_directory' => 'public',
+    'base_directory' => 'public/documents',
 
     'images_folder_name' => 'photos',
     'files_folder_name'  => 'files',
@@ -78,13 +78,13 @@ return [
     'alphanumeric_directory' => false,
 
     // If true, the uploading file's size will be verified for over than max_image_size/max_file_size.
-    'should_validate_size' => false,
+    'should_validate_size' => true,
 
-    'max_image_size' => 50000,
-    'max_file_size' => 50000,
+    'max_image_size' => 5120,
+    'max_file_size' => 5120,
 
     // If true, the uploading file's mime type will be valid in valid_image_mimetypes/valid_file_mimetypes.
-    'should_validate_mime' => false,
+    'should_validate_mime' => true,
 
     // available since v1.3.0
     'valid_image_mimetypes' => [

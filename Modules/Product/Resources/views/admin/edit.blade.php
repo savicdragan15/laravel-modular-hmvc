@@ -1,5 +1,14 @@
 @extends('admin.layouts.master')
 
+@section('title')
+   Edit Product {{ $product->name }}
+@endsection
+
+
+@section('styles')
+  {{-- <link href="{{ asset('assets/admin/vendors/custom/jquery-ui/jquery-ui.bundle.css') }}" rel="stylesheet" type="text/css" /> --}}
+@endsection
+
 @section('content')
 
 <!-- BEGIN: Subheader -->
@@ -11,7 +20,7 @@
                 </h3>
                 <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                         <li class="m-nav__item m-nav__item--home">
-                                <a href="#" class="m-nav__link m-nav__link--icon">
+                                <a href="{{ route('admin.dashboard') }}" class="m-nav__link m-nav__link--icon">
                                         <i class="m-nav__link-icon la la-home"></i>
                                 </a>
                         </li>
@@ -19,9 +28,9 @@
                                 -
                         </li>
                         <li class="m-nav__item">
-                                <a href="" class="m-nav__link">
+                                <a href="{{ route('admin.product.index') }}" class="m-nav__link">
                                         <span class="m-nav__link-text">
-                                                Product
+                                              All products
                                         </span>
                                 </a>
                         </li>
@@ -31,12 +40,32 @@
                         <li class="m-nav__item">
                                 <a href="" class="m-nav__link">
                                         <span class="m-nav__link-text">
-                                                All products
+                                                Edit product - {{ $product->name }}
                                         </span>
                                 </a>
                         </li>
                 </ul>
         </div>
+        <div>
+          <a href="{{ route('admin.productimage.edit', ['id' => $product->id]) }}" class="btn btn-brand m-btn m-btn--icon m-btn--wide">
+					<span>
+						<i class="la la-image"></i>
+						<span>
+							 Product images
+						</span>
+					</span>
+					</a>
+
+          <a href="{{ route('admin.product.create') }}" class="btn btn-success m-btn m-btn--icon m-btn--wide">
+					<span>
+						<i class="la la-plus-square"></i>
+						<span>
+							Create new Product
+						</span>
+					</span>
+					</a>
+
+				</div>
 <!--                <div>
                         <span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
                                 <span class="m-subheader__daterange-label">
@@ -52,6 +81,11 @@
 </div>
 <!-- END: Subheader -->
 <div class="m-content">
+
+  @if(Session::has('message'))
+    @include('product::admin.partials.notification')
+  @endif
+
   {{ debug($product) }}
     <div class="row">
     <div class="col-md-12">
@@ -93,7 +127,6 @@
     </div>
 
 </div>
-
 @stop
 
 @section('scripts')

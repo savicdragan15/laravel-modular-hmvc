@@ -35,6 +35,11 @@ class Product extends Model
        return $this->belongsToMany('Modules\Product\Entities\Models\ProductCategory', 'product_categories_pivot', 'product_id', 'category_id')->where('parent_id', null)->where('subparent_id', '<>', null);
     }
 
+    public function images()
+    {
+      return $this->hasMany('Modules\Product\Entities\Models\ProductImage', 'product_id', 'id');
+    }
+
     public function format($relation)
     {
        $array = [];
@@ -44,6 +49,11 @@ class Product extends Model
        }
 
        return json_encode($array);
+    }
+
+    public function getFeaturedImage()
+    {
+      return !is_null($this->featured_image) ? asset($this->featured_image) : false;
     }
 
 }

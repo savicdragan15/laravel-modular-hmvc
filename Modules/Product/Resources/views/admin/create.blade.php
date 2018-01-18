@@ -105,6 +105,7 @@
             placeholder: "Select a category"
           });
 
+          $('#lfm').filemanager('image');
        });
 
   </script>

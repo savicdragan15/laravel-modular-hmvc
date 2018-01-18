@@ -71,13 +71,35 @@ class ImageController extends Controller
      */
     public function update(Request $request)
     {
+      //dd($request->all());
+       $images_ids = $request->input('ids');
+
+       foreach($images_ids as $key => $id) {
+          $image = ProductImage::find($id);
+
+          $image->update([
+            'order_num' => $key+1
+          ]);
+       }
+
+       return redirect()->route('admin.productimage.edit', $request->input('product_id'));
+
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy(Request $request, $id)
     {
+      $image = ProductImage::findOrFail($id);
+      $image->delete();
+
+      return [
+        'id' => $id,
+        'error' => false,
+        'message' => 'Image successfully deleted!'
+      ];
+
     }
 }

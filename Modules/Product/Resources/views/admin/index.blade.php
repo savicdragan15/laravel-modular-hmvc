@@ -42,8 +42,17 @@
                 </ul>
         </div>
         <div>
-          <a href="{{ route('admin.product.create') }}" class="btn m-btn--pill    btn-outline-success">
+          {{-- <a href="{{ route('admin.product.create') }}" class="btn m-btn--pill    btn-outline-success">
   						 Insert new Product
+					</a> --}}
+
+          <a href="{{ route('admin.product.create') }}" class="btn btn-success m-btn m-btn--icon m-btn--wide">
+					<span>
+						<i class="la la-plus-square"></i>
+						<span>
+							Create new Product
+						</span>
+					</span>
 					</a>
 				</div>
         </div>
@@ -205,7 +214,7 @@
                                   {!! $product->active ? '<span class="m-badge  m-badge--success m-badge--wide">Active</span>' : '<span class="m-badge  m-badge--danger m-badge--wide">Inactive</span>' !!}
                                 </td>
                                 <td class="text-center">
-                                  <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
+                                  <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
                                     <i class="la la-edit"></i>
                                   </a>
                                   <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">

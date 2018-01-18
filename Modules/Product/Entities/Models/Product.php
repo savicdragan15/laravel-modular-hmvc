@@ -37,7 +37,7 @@ class Product extends Model
 
     public function images()
     {
-      return $this->hasMany('Modules\Product\Entities\Models\ProductImage', 'product_id', 'id');
+      return $this->hasMany('Modules\Product\Entities\Models\ProductImage', 'product_id', 'id')->orderBy('order_num', 'ASC');
     }
 
     public function format($relation)

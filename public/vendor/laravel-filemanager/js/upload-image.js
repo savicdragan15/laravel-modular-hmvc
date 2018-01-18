@@ -10,7 +10,7 @@
       window.open(route_prefix + '?type=' + type, 'FileManager', 'width=1200,height=600');
 
       window.SetUrl = function (url, file_path) {
-          console.log(file_path);
+
           var product_id = $('#product_id').val();
 
           var data = {
@@ -29,11 +29,9 @@
             url: '/admin/productimage',
             data: data,
             success: function(data){
-              console.log(data);
               location.reload();
             }
           });
-
 
           //set the value of the desired input to image url
           // var target_input = $('#' + localStorage.getItem('target_input'));

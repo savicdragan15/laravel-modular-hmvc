@@ -60,34 +60,67 @@
           <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__body">
               <div class="col-md-12">
-								<div class="input-group">
-							    <span class="input-group-btn">
-										 <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-brand" style="color: white;">
-										 	 <i class="fa fa-picture-o"></i> Choose image
-										 </a>
-							    </span>
-							</div>
+
+									 <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}" class="btn btn-success" style="color: white;">
+									 	 <i class="fa fa-arrow-left"></i> Back to product
+									 </a>
+
+                   <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-brand" style="color: white;">
+									 	 <i class="fa fa-picture-o"></i> Choose image
+									 </a>
 
 							</div>
-            </div>
+
+              <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
 
               @if(!$product->images->isEmpty())
-                <ul id="sortable">
-                  @foreach ($product->images as $key => $image)
-                      <li class="ui-state-default">
-                        <div class="m-portlet__body">
-                          <img src="{{ asset($image->name) }}" alt="" width="200">
-                          <div style="margin-top: 5px;">
-                            <button class="btn btn-success btn-sm"type="button" name="button">ee</button>
-                          </div>
-                        </div>
-                      </li>
-                  @endforeach
-                </ul>
+                <form class="" action="{{ route('admin.productimage.update', ['id' => $product->id]) }}" method="POST">
+                  {{ csrf_field() }}
+                  {{ method_field('PUT') }}
+                  <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
+                  <div class="input-group">
+                    <ul id="sortable">
+                      @foreach ($product->images as $key => $image)
+                          <li class="ui-state-default" id="image-{{ $image->id }}">
+                            <div class="m-portlet__body">
+
+                              <div style="height: 200px;">
+                                <img src="{{ asset($image->name) }}" alt="" width="200">
+                              </div>
+
+                              <input type="hidden" name="ids[]" value="{{ $image->id }}">
+                              <div style="margin-top: 5px;">
+                                <button class="btn btn-{{ $image->active ? 'success' : 'danger' }} btn-sm"type="button" name="button">
+                                    {!! $image->active ? '<i class="fa fa-check"></i> Active' : '<i class="fa fa-close"></i> Inactive' !!}
+                                </button>
+
+                                  <button type="button" data-id="{{ $image->id }}" class="btn btn-danger btn-sm pull-right delete-image">
+                                     <i class="fa fa-trash"></i> Delete
+                                  </button>
+
+                              </div>
+                            </div>
+                          </li>
+                      @endforeach
+                    </ul>
+                  </div>
+
+                  <div class="input-group">
+                    <div class="m-portlet__foot m-portlet__foot--fit">
+										<div class="m-form__actions">
+											<button type="submit" class="btn btn-brand">
+												<i class="fa fa-save"></i> Save
+											</button>
+										</div>
+									</div>
+
+                  </div>
+                </form>
               @endif
+                </div>
           </div>
         </div>
-        <input type="text" name="" id="product_id" value="{{ $product->id }}">
+
     </div>
 
   </div>
@@ -104,6 +137,33 @@
        });
 
        $('#lfm').uploadimage('image');
+
+       $('.delete-image').on('click', function(e) {
+          e.preventDefault();
+          console.log($(this).attr('data-id'));
+
+          var image_id = $(this).attr('data-id');
+
+          var data = {
+              'id' : image_id
+          };
+
+          $.ajax({
+            type: "DELETE",
+            url: '/admin/productimage/'+image_id,
+            data: data,
+            success: function(data){
+              mApp.unblockPage();
+              if(data.error == false){
+                  $('#image-'+data.id).remove();
+                  toastr.success(data.message);
+              }
+
+            }
+          });
+
+
+       });
 
   </script>
 @endsection

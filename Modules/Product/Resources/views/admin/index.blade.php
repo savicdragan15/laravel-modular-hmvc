@@ -172,9 +172,11 @@
 															<th>
 																Name
 															</th>
-															<th class="text-center">
-																Price
-															</th>
+                              @if(config('product.has_price'))
+  															<th class="text-center">
+  																Price
+  															</th>
+                              @endif
 															<th class="text-center">
 																Created at
 															</th>
@@ -196,14 +198,16 @@
                                   {{ $product->id }}
   															</th>
                                 <th class="text-center">
-                                   <img src="{{ $product->featured_image ? asset($product->featured_image) : asset('assets/admin/no-image.png') }}" alt="" width="50" title="Featured image">
+                                   <img src="{{ $product->getThumbFeaturedImage() ? asset($product->getThumbFeaturedImage()) : asset('assets/admin/no-image.png') }}" alt="" width="50" title="Featured image">
                                 </th>
   															<td>
                                   {{ $product->name }}
   															</td>
-  															<td class="text-center">
-                                  {{ number_format($product->price, 2) }} {{ config('product.currency') }}
-  															</td>
+                                @if(config('product.has_price'))
+    															<td class="text-center">
+                                    {{ number_format($product->price, 2) }} {{ config('product.currency') }}
+    															</td>
+                                @endif
   															<td class="text-center">
                                   <i> {{ $product->created_at ? $product->created_at->format('d.m.Y. H:i') : '/' }} </i>
   															</td>

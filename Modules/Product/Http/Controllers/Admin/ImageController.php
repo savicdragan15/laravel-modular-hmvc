@@ -102,4 +102,31 @@ class ImageController extends Controller
       ];
 
     }
+
+    public function active(Request $request)
+    {
+        //return $request->all();
+        $id = $request->input('id');
+        $active = $request->input('value');
+
+        $image = ProductImage::findOrFail($id);
+        $image->active = $active;
+
+
+        if(!$image->save()) {
+          return [
+            'id' => $id,
+            'error' => true,
+            'message' => 'Image unsuccessfully updated!'
+          ];
+        }
+
+        return [
+          'id' => $id,
+          'error' => false,
+          'active' => $image->active ? 0 : 1,
+          'message' => 'Image successfully updated!'
+        ];
+
+    }
 }

@@ -47,14 +47,16 @@
                 </ul>
         </div>
         <div>
-          <a href="{{ route('admin.productimage.edit', ['id' => $product->id]) }}" class="btn btn-brand m-btn m-btn--icon m-btn--wide">
-					<span>
-						<i class="la la-image"></i>
-						<span>
-							 Product images
-						</span>
-					</span>
-					</a>
+          @if(config('product.has_more_image'))
+            <a href="{{ route('admin.productimage.edit', ['id' => $product->id]) }}" class="btn btn-brand m-btn m-btn--icon m-btn--wide">
+  					<span>
+  						<i class="la la-image"></i>
+  						<span>
+  							 Product images
+  						</span>
+  					</span>
+  					</a>
+          @endif
 
           <a href="{{ route('admin.product.create') }}" class="btn btn-success m-btn m-btn--icon m-btn--wide">
 					<span>

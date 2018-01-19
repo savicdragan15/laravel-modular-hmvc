@@ -29,6 +29,27 @@
                                 </span>
                         </a>
                 </li>
+                <li class="m-menu__item " aria-haspopup="true" >
+                        <a  href="{{ route('admin.productreview.index') }}" class="m-menu__link ">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                        <span></span>
+                                </i>
+                                <span class="m-menu__link-text">
+                                      Product reviews
+                                </span>
+                        </a>
+                </li>
+{{--
+                <li class="m-menu__item " aria-haspopup="true" >
+                        <a  href="{{ route('admin.productcategory.index') }}" class="m-menu__link ">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                        <span></span>
+                                </i>
+                                <span class="m-menu__link-text">
+                                       All Categories
+                                </span>
+                        </a>
+                </li> --}}
 
                 {{-- <li class="m-menu__item m-menu__item--submenu m-menu__item--open" aria-haspopup="true" data-menu-submenu-toggle="hover">
 											<a href="#" class="m-menu__link m-menu__toggle">

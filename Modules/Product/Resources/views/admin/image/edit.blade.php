@@ -90,8 +90,8 @@
 
                               <input type="hidden" name="ids[]" value="{{ $image->id }}">
                               <div style="margin-top: 5px;">
-                                <button class="btn btn-{{ $image->active ? 'success' : 'danger' }} btn-sm"type="button" name="button">
-                                    {!! $image->active ? '<i class="fa fa-check"></i> Active' : '<i class="fa fa-close"></i> Inactive' !!}
+                                <button class="btn btn-{{ $image->active ? 'success' : 'danger' }} btn-sm active-image" data-id="{{ $image->id }}" data-value="{{ $image->active ? 0 : 1 }}" type="button">
+                                    {!! $image->active ? '<i class="fa fa-check"></i>' : '<i class="fa fa-close"></i>' !!}
                                 </button>
 
                                   <button type="button" data-id="{{ $image->id }}" class="btn btn-danger btn-sm pull-right delete-image">
@@ -158,12 +158,60 @@
                   $('#image-'+data.id).remove();
                   toastr.success(data.message);
               }
-
             }
           });
 
+       });
+
+       $('.active-image').on('click', function(e) {
+         e.preventDefault();
+         console.log($(this).attr('data-id'));
+
+         var image_id = $(this).attr('data-id');
+         var active = $(this).attr('data-value');
+
+         var data = {
+             'id' : image_id,
+             'value' : active
+         };
+
+         $.ajax({
+           type: "POST",
+           url: '{{ route('admin.productimage.active') }}',
+           data: data,
+           success: function(data){
+             mApp.unblockPage();
+             if(data.error == false){
+               var button = $('#image-'+data.id).find('.active-image');
+               button.attr('data-value', data.active);
+               console.log(data);
+
+               if(data.active == 0){
+                 button.removeClass('btn-danger').addClass('btn-success');
+                 button.find('i').removeClass('fa-close').addClass('fa-check');
+               }
+
+               if(data.active == 1){
+                 button.removeClass('btn-success').addClass('btn-danger');
+                 button.find('i').removeClass('fa-check').addClass('fa-close');
+               }
+
+
+               console.log(button.find('i'));
+               toastr.success(data.message);
+             }
+
+             if(data.error == true){
+               toastr.error(data.message);
+             }
+
+
+           }
+         });
+
 
        });
+
 
   </script>
 @endsection

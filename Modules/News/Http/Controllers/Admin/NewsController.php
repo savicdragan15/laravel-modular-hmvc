@@ -51,7 +51,6 @@ class NewsController extends Controller
      */
     public function store(CreateArticleRequest $request)
     {
-      //dd($request->all());
 
       $ids = array_merge(
         is_array($request->input('category_id')) ? $request->input('category_id') : [],
@@ -59,6 +58,7 @@ class NewsController extends Controller
         is_array($request->input('subsubcategory_id')) ? $request->input('subsubcategory_id') : []
       );
 
+      $request->request->add(['author_id' => \Auth::user()->id]);
       $article = News::create($request->all());
       $article->allCategories()->sync($ids);
 

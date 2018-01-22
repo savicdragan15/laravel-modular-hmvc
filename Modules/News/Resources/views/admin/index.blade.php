@@ -208,8 +208,8 @@
                               <td> {{ $article->name_secondary }} </td>
                               <td> {{ $article->slug }} </td>
                               <td> {{ $article->author->name or 'None' }} </td>
-                              <td> <i> {{ $article->created_at ? $article->created_at->format('d.m.Y. H:i') : '/' }} </i> </td>
-                              <td> <i> {{ $article->updated_at ? $article->updated_at->format('d.m.Y. H:i') : '/' }} </i> </td>
+                              <td class="text-center"> <i> {{ $article->created_at ? $article->created_at->format('d.m.Y. H:i') : '/' }} </i> </td>
+                              <td class="text-center"> <i> {{ $article->updated_at ? $article->updated_at->format('d.m.Y. H:i') : '/' }} </i> </td>
                               <td class="text-center">
                                 {!! $article->active ? '<span class="m-badge  m-badge--success m-badge--wide">Active</span>' : '<span class="m-badge  m-badge--danger m-badge--wide">Inactive</span>' !!}
                               </td>

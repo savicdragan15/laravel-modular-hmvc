@@ -124,7 +124,7 @@
             </div>
     </form>
     <!--end::Form-->
-								</div>
+		</div>
         </div>
     </div>
 

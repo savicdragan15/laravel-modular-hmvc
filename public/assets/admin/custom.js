@@ -44,4 +44,17 @@ $.ajaxSetup({
 
   });
 
+  $('#featured').on('change', function() {
+    var val = $(this).val();
+
+    if(val == 1){
+       $(this).val(0);
+       $(this).attr('name', 'featured');
+    }else{
+      $(this).val(1);
+       $(this).attr('name', 'featured');
+    }
+
+  });
+
 });

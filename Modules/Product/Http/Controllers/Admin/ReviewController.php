@@ -10,6 +10,16 @@ use Modules\Product\Entities\Models\ProductReview;
 class ReviewController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
+    /**
      * Display a listing of the resource.
      * @return Response
      */

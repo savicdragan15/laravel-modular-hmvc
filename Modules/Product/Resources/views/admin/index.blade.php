@@ -160,7 +160,7 @@
 											</span>
 											<div class="m-section__content">
                         <div class="table-responsive ">
-								              <table class="table m-table m-table--head-bg-brand table-bordered table-hover">
+					              <table class="table m-table m-table--head-bg-brand table-bordered table-hover">
 													<thead>
 														<tr>
 															<th class="text-center">

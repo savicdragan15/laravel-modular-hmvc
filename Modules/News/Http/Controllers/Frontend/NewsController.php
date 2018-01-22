@@ -1,33 +1,20 @@
 <?php
 
-namespace Modules\Product\Http\Controllers\Admin;
+namespace Modules\News\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\Product\Entities\Models\ProductCategory;
 
-class CategoryController extends Controller
+class NewsController extends Controller
 {
-  /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-      $this->middleware('auth:admin');
-  }
-  
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        $categories = ProductCategory::where(['parent_id' => null, 'subparent_id' => null])->orderBy('order_num', 'ASC')->get();
-
-        return view('product::admin.category.index', compact('categories'));
+        return view('news::index');
     }
 
     /**
@@ -36,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('product::create');
+        return view('news::create');
     }
 
     /**
@@ -54,7 +41,7 @@ class CategoryController extends Controller
      */
     public function show()
     {
-        return view('product::show');
+        return view('news::show');
     }
 
     /**
@@ -63,7 +50,7 @@ class CategoryController extends Controller
      */
     public function edit()
     {
-        return view('product::edit');
+        return view('news::edit');
     }
 
     /**

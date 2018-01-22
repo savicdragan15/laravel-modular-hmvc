@@ -25,7 +25,7 @@
                                         <span></span>
                                 </i>
                                 <span class="m-menu__link-text">
-                                       Crate Product
+                                       Crate Article
                                 </span>
                         </a>
                 </li>

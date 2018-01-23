@@ -37,7 +37,7 @@ class Product extends Model
 
     public function images()
     {
-      return $this->hasMany('Modules\Product\Entities\Models\ProductImage', 'product_id', 'id');
+      return $this->hasMany('Modules\Product\Entities\Models\ProductImage', 'product_id', 'id')->orderBy('order_num', 'ASC');
     }
 
     public function format($relation)
@@ -53,7 +53,20 @@ class Product extends Model
 
     public function getFeaturedImage()
     {
-      return !is_null($this->featured_image) ? asset($this->featured_image) : false;
+        return !is_null($this->featured_image) ? asset($this->featured_image) : false;
+    }
+
+    public function getThumbFeaturedImage()
+    {
+      $str_to_insert = '/thumbs';
+      $pos = strrpos($this->featured_image, "/");
+
+      if(!is_null($this->featured_image)) {
+          return substr_replace($this->featured_image, $str_to_insert, $pos, 0);
+      }
+
+      return false;
+
     }
 
 }

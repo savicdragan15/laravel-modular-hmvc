@@ -77,14 +77,16 @@
           {{ csrf_field() }}
           @include('product::admin.partials.form')
           <div class="m-portlet__foot m-portlet__foot--fit">
-                  <div class="m-form__actions m-form__actions">
-                          <button type="submit" class="btn btn-primary">
-                                  Submit
-                          </button>
-                          <button type="reset" class="btn btn-secondary">
-                                  Cancel
-                          </button>
-                  </div>
+              <div class="m-form__actions m-form__actions">
+                  <button class="btn btn-brand m-btn m-btn--custom m-btn--icon pull-right" type="submit">
+                    <span>
+                      <i class="fa fa-save"></i>
+                      <span>
+                        Create
+                      </span>
+                    </span>
+                  </button>
+              </div>
           </div>
   </form>
   <!--end::Form-->
@@ -105,6 +107,7 @@
             placeholder: "Select a category"
           });
 
+          $('#lfm').filemanager('image');
        });
 
   </script>

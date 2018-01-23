@@ -42,8 +42,17 @@
                 </ul>
         </div>
         <div>
-          <a href="{{ route('admin.product.create') }}" class="btn m-btn--pill    btn-outline-success">
+          {{-- <a href="{{ route('admin.product.create') }}" class="btn m-btn--pill    btn-outline-success">
   						 Insert new Product
+					</a> --}}
+
+          <a href="{{ route('admin.product.create') }}" class="btn btn-success m-btn m-btn--icon m-btn--wide">
+					<span>
+						<i class="la la-plus-square"></i>
+						<span>
+							Create new Product
+						</span>
+					</span>
 					</a>
 				</div>
         </div>
@@ -151,7 +160,7 @@
 											</span>
 											<div class="m-section__content">
                         <div class="table-responsive ">
-								              <table class="table m-table m-table--head-bg-brand table-bordered table-hover">
+					              <table class="table m-table m-table--head-bg-brand table-bordered table-hover">
 													<thead>
 														<tr>
 															<th class="text-center">
@@ -163,9 +172,11 @@
 															<th>
 																Name
 															</th>
-															<th class="text-center">
-																Price
-															</th>
+                              @if(config('product.has_price'))
+  															<th class="text-center">
+  																Price
+  															</th>
+                              @endif
 															<th class="text-center">
 																Created at
 															</th>
@@ -187,14 +198,16 @@
                                   {{ $product->id }}
   															</th>
                                 <th class="text-center">
-                                   <img src="{{ $product->featured_image ? asset($product->featured_image) : asset('assets/admin/no-image.png') }}" alt="" width="50" title="Featured image">
+                                   <img src="{{ $product->getThumbFeaturedImage() ? asset($product->getThumbFeaturedImage()) : asset('assets/admin/no-image.png') }}" alt="" width="50" title="Featured image">
                                 </th>
   															<td>
                                   {{ $product->name }}
   															</td>
-  															<td class="text-center">
-                                  {{ number_format($product->price, 2) }} {{ config('product.currency') }}
-  															</td>
+                                @if(config('product.has_price'))
+    															<td class="text-center">
+                                    {{ number_format($product->price, 2) }} {{ config('product.currency') }}
+    															</td>
+                                @endif
   															<td class="text-center">
                                   <i> {{ $product->created_at ? $product->created_at->format('d.m.Y. H:i') : '/' }} </i>
   															</td>
@@ -202,10 +215,10 @@
                                   <i> {{ $product->updated_at ? $product->updated_at->format('d.m.Y. H:i') : '/' }} </i>
                                 </td>
                                 <td class="text-center">
-                                  {!! $product->active ? '<span class="m-badge  m-badge--success m-badge--wide">Active</span>' : '<span class="m-badge  m-badge--danger m-badge--wide">Inactive</span>' !!}
+                                  {!! $product->active ? '<span id="active-'.$product->id.'" data-value="0" data-url="'.route('admin.product.active', ['id' => $product->id]).'" class="m-badge active  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$product->id.'" data-value="1" data-url="'.route('admin.product.active', ['id' => $product->id]).'" class="m-badge active  m-badge--danger m-badge--wide">Inactive</span>' !!}
                                 </td>
                                 <td class="text-center">
-                                  <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
+                                  <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
                                     <i class="la la-edit"></i>
                                   </a>
                                   <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">

@@ -10,6 +10,16 @@ use Modules\Product\Entities\Models\ProductImage;
 
 class ImageController extends Controller
 {
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response
@@ -71,13 +81,62 @@ class ImageController extends Controller
      */
     public function update(Request $request)
     {
+      //dd($request->all());
+       $images_ids = $request->input('ids');
+
+       foreach($images_ids as $key => $id) {
+          $image = ProductImage::find($id);
+
+          $image->update([
+            'order_num' => $key+1
+          ]);
+       }
+
+       return redirect()->route('admin.productimage.edit', $request->input('product_id'));
+
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy(Request $request, $id)
     {
+      $image = ProductImage::findOrFail($id);
+      $image->delete();
+
+      return [
+        'id' => $id,
+        'error' => false,
+        'message' => 'Image successfully deleted!'
+      ];
+
+    }
+
+    public function active(Request $request)
+    {
+        //return $request->all();
+        $id = $request->input('id');
+        $active = $request->input('value');
+
+        $image = ProductImage::findOrFail($id);
+        $image->active = $active;
+
+
+        if(!$image->save()) {
+          return [
+            'id' => $id,
+            'error' => true,
+            'message' => 'Image unsuccessfully updated!'
+          ];
+        }
+
+        return [
+          'id' => $id,
+          'error' => false,
+          'active' => $image->active ? 0 : 1,
+          'message' => 'Image successfully updated!'
+        ];
+
     }
 }

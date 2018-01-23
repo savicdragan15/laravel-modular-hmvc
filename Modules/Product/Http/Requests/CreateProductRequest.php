@@ -26,7 +26,7 @@ class CreateProductRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'slug' => 'required',
+            'slug' => 'required|unique:products,slug',
         ];
     }
 

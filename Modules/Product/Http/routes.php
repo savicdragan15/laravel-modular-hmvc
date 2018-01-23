@@ -11,9 +11,18 @@ Route::group(['middleware' => 'web', 'prefix' => 'product', 'namespace' => 'Modu
 // Admin RESTFULL routes
 Route::resource('admin/product', 'Modules\Product\Http\Controllers\Admin\ProductController', ['middleware' => 'web', 'as' => 'admin', 'prefix' => 'admin']);
 Route::resource('admin/productimage', 'Modules\Product\Http\Controllers\Admin\ImageController', ['middleware' => 'web', 'as' => 'admin', 'prefix' => 'admin']);
+Route::resource('admin/productcategory', 'Modules\Product\Http\Controllers\Admin\CategoryController', ['middleware' => 'web', 'as' => 'admin', 'prefix' => 'admin']);
+Route::resource('admin/productreview', 'Modules\Product\Http\Controllers\Admin\ReviewController', ['middleware' => 'web', 'as' => 'admin', 'prefix' => 'admin']);
 
-// Admin custom routes
+// Admin product custom routes
 Route::group(['middleware' => 'web', 'prefix' => 'admin/product', 'namespace' => 'Modules\Product\Http\Controllers'], function()
 {
     Route::get('datatables/data', 'Admin\ProductController@getData')->name('admin.product.datatables.data');
+    Route::post('active/{id}', 'Admin\ProductController@active')->name('admin.product.active');
+});
+
+// Admin productimage custom routes
+Route::group(['middleware' => 'web', 'prefix' => 'admin/productimage', 'namespace' => 'Modules\Product\Http\Controllers'], function()
+{
+    Route::post('active', 'Admin\ImageController@active')->name('admin.productimage.active');
 });

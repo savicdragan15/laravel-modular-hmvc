@@ -13,3 +13,4 @@ yarn-error.log
 /nbproject/
 /storage/
 /public/modules/
+/composer.lock

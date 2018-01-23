@@ -22,14 +22,14 @@ $(document).ready(function() {
       mApp.blockPage();
   });
 
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    beforeSend: function(){
-      mApp.blockPage();
-    }
-});
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      beforeSend: function(){
+        mApp.blockPage();
+      }
+  });
 
   $('#active').on('change', function() {
     var val = $(this).val();
@@ -54,6 +54,45 @@ $.ajaxSetup({
       $(this).val(1);
        $(this).attr('name', 'featured');
     }
+
+  });
+
+  $('.active').on('click', function(){
+      //alert('active');
+      var active = $(this).attr('data-value');
+      var url = $(this).attr('data-url');
+      //alert(url);
+
+      var data = {
+          'active' : active
+      };
+
+      console.log(active);
+
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function(data){
+          mApp.unblockPage();
+
+          if(data.error == false){
+              var button = $('#active-'+data.id);
+
+              button.attr('data-value', data.active);
+              button.html(data.text);
+
+              if(data.active) {
+                button.removeClass('m-badge--success').addClass(data.class);
+              }else {
+                button.removeClass('m-badge--danger').addClass(data.class);
+              }
+
+              toastr.success(data.message);
+          }
+        }
+      });
+
 
   });
 

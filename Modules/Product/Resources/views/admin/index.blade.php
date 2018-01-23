@@ -215,7 +215,7 @@
                                   <i> {{ $product->updated_at ? $product->updated_at->format('d.m.Y. H:i') : '/' }} </i>
                                 </td>
                                 <td class="text-center">
-                                  {!! $product->active ? '<span class="m-badge  m-badge--success m-badge--wide">Active</span>' : '<span class="m-badge  m-badge--danger m-badge--wide">Inactive</span>' !!}
+                                  {!! $product->active ? '<span id="active-'.$product->id.'" data-value="0" data-url="'.route('admin.product.active', ['id' => $product->id]).'" class="m-badge active  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$product->id.'" data-value="1" data-url="'.route('admin.product.active', ['id' => $product->id]).'" class="m-badge active  m-badge--danger m-badge--wide">Inactive</span>' !!}
                                 </td>
                                 <td class="text-center">
                                   <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">

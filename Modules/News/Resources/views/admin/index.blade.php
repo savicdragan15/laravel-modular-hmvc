@@ -211,7 +211,7 @@
                               <td class="text-center"> <i> {{ $article->created_at ? $article->created_at->format('d.m.Y. H:i') : '/' }} </i> </td>
                               <td class="text-center"> <i> {{ $article->updated_at ? $article->updated_at->format('d.m.Y. H:i') : '/' }} </i> </td>
                               <td class="text-center">
-                                {!! $article->active ? '<span class="m-badge  m-badge--success m-badge--wide">Active</span>' : '<span class="m-badge  m-badge--danger m-badge--wide">Inactive</span>' !!}
+                                {!! $article->active ? '<span id="active-'.$article->id.'" data-value="0" data-url="'.route('admin.news.active', ['id' => $article->id]).'" class="m-badge active  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$article->id.'" data-value="1" data-url="'.route('admin.news.active', ['id' => $article->id]).'" class="m-badge active  m-badge--danger m-badge--wide">Inactive</span>' !!}
                               </td>
                               <td>
                                 <a href="{{ route('admin.news.edit', ['id' => $article->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">

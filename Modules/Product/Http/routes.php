@@ -18,6 +18,7 @@ Route::resource('admin/productreview', 'Modules\Product\Http\Controllers\Admin\R
 Route::group(['middleware' => 'web', 'prefix' => 'admin/product', 'namespace' => 'Modules\Product\Http\Controllers'], function()
 {
     Route::get('datatables/data', 'Admin\ProductController@getData')->name('admin.product.datatables.data');
+    Route::post('active/{id}', 'Admin\ProductController@active')->name('admin.product.active');
 });
 
 // Admin productimage custom routes

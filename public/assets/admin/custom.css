@@ -1,3 +1,4 @@
+.active { cursor: pointer; }
 .pagination { font-size: 14px; }
 .pagination li { margin-right: 5px; border-radius: 15px;}
 .pagination li:hover { background-color: #eaeaea;}

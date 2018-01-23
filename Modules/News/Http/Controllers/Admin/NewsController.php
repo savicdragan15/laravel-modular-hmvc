@@ -130,4 +130,31 @@ class NewsController extends Controller
     {
     }
 
+    public function active(Request $request, $id)
+    {
+        $active = $request->input('active');
+
+        $article = News::findOrFail($id);
+        $article->active = $active;
+
+
+        if(!$article->save()) {
+          return [
+            'id' => $id,
+            'error' => true,
+            'message' => 'Article unsuccessfully updated!'
+          ];
+        }
+
+        return [
+          'id' => $id,
+          'error' => false,
+          'active' => $article->active ? 0 : 1,
+          'text' => $article->active ? 'Active' : 'Inactive',
+          'class' => $article->active ? 'm-badge--success' : 'm-badge--danger',
+          'message' => 'Article successfully updated!'
+        ];
+
+    }
+
 }

@@ -57,7 +57,7 @@ class ProductController extends Controller
         is_array($request->input('subcategory_id')) ? $request->input('subcategory_id') : [],
         is_array($request->input('subsubcategory_id')) ? $request->input('subsubcategory_id') : []
       );
-      
+
       $product = Product::create($request->all());
       $product->allCategories()->sync($ids);
 
@@ -124,6 +124,33 @@ class ProductController extends Controller
      */
     public function destroy()
     {
+    }
+
+    public function active(Request $request, $id)
+    {
+        $active = $request->input('active');
+
+        $product = Product::findOrFail($id);
+        $product->active = $active;
+
+
+        if(!$product->save()) {
+          return [
+            'id' => $id,
+            'error' => true,
+            'message' => 'Product unsuccessfully updated!'
+          ];
+        }
+
+        return [
+          'id' => $id,
+          'error' => false,
+          'active' => $product->active ? 0 : 1,
+          'text' => $product->active ? 'Active' : 'Inactive',
+          'class' => $product->active ? 'm-badge--success' : 'm-badge--danger',
+          'message' => 'Product successfully updated!'
+        ];
+
     }
 
 }

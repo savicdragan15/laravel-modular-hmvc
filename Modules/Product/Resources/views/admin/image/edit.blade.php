@@ -6,6 +6,7 @@
 
 @section('styles')
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" media="screen" type="text/css" href="{{ asset('assets/admin/colorpicker/css/colorpicker.css') }}" />
 @endsection
 
 @section('content')
@@ -88,7 +89,17 @@
                                 <img src="{{ asset($image->name) }}" alt="" width="200">
                               </div>
 
+                              @if(config('product.has_color_image'))
+                                <div class="input-group m-input-group">
+                                  <span class="input-group-addon" id="basic-addon1">
+                                      <i class="fa fa-pencil"></i>
+                                  </span>
+                                  <input type="text" name="color" class="form-control m-input" placeholder="Color" value="#bd2abd">
+                                </div>
+                             @endif
+
                               <input type="hidden" name="ids[]" value="{{ $image->id }}">
+
                               <div style="margin-top: 5px;">
                                 <button class="btn btn-{{ $image->active ? 'success' : 'danger' }} btn-sm active-image" data-id="{{ $image->id }}" data-value="{{ $image->active ? 0 : 1 }}" type="button">
                                     {!! $image->active ? '<i class="fa fa-check"></i>' : '<i class="fa fa-close"></i>' !!}
@@ -129,6 +140,7 @@
 
 @section('scripts')
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="{{ asset('assets/admin/colorpicker/js/colorpicker.js') }}"></script>
   <script type="text/javascript">
 
        $(document).ready(function(){
@@ -137,6 +149,18 @@
        });
 
        $('#lfm').uploadimage('image');
+
+        // $("input[name='color']").ColorPicker({
+        //     onBeforeShow: function (colpkr) {
+        //       $(colpkr).fadeIn(500);
+        //       $(this).ColorPickerSetColor(this.value);
+        //     },
+        //     onHide: function (colpkr) {
+        //       console.log($(this));
+        //       $(colpkr).fadeOut(500);
+        //       return false;
+        //     }
+        // });
 
        $('.delete-image').on('click', function(e) {
           e.preventDefault();
@@ -208,7 +232,6 @@
 
            }
          });
-
 
        });
 

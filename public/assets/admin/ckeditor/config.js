@@ -9,7 +9,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
 	//config.skin = 'office2013';
 
-	config.extraPlugins = 'videoembed,embedbase,embed,notification,notificationaggregator';
+	config.extraPlugins = 'videoembed,embedbase,embed,notification,notificationaggregator,image2';
 
 	config.embed_provider = '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}';
 };

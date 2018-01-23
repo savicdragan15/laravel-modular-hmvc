@@ -10,6 +10,7 @@ CKEDITOR.editorConfig = function( config ) {
 	//config.skin = 'office2013';
 
 	config.extraPlugins = 'videoembed,embedbase,embed,notification,notificationaggregator,image2';
+	config.removeDialogTabs = 'link:upload;image2:Upload';
 
 	config.embed_provider = '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}';
 };

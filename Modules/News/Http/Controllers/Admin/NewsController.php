@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\News\Http\Requests\CreateArticleRequest;
 use Modules\News\Http\Requests\UpdateArticleRequest;
 use Modules\News\Entities\Models\News;
+use Modules\News\Entities\Models\NewsTag;
 use Modules\News\Entities\Models\NewsCategory;
 
 class NewsController extends Controller
@@ -40,8 +41,9 @@ class NewsController extends Controller
     public function create()
     {
         $categories = NewsCategory::where(['parent_id' => null, 'subparent_id' => null])->get();
+        $tags = NewsTag::orderBy('created_at')->get();
 
-        return view('news::admin.create', compact('categories'));
+        return view('news::admin.create', compact('categories', 'tags'));
     }
 
     /**
@@ -61,6 +63,7 @@ class NewsController extends Controller
       $request->request->add(['author_id' => \Auth::user()->id]);
       $article = News::create($request->all());
       $article->allCategories()->sync($ids);
+      $article->tags()->sync($request->input('tag_id'));
 
       \Session::flash('class','success');
       \Session::flash('message','Article successfully saved.');
@@ -87,8 +90,9 @@ class NewsController extends Controller
     {
         $article = News::findOrFail($id);
         $categories = NewsCategory::where(['parent_id' => null, 'subparent_id' => null])->get();
+        $tags = NewsTag::orderBy('created_at')->get();
 
-        return view('news::admin.edit', compact('article', 'categories'));
+        return view('news::admin.edit', compact('article', 'categories', 'tags'));
     }
 
     /**
@@ -98,7 +102,6 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-
       $ids = array_merge(
         is_array($request->input('category_id')) ? $request->input('category_id') : [],
         is_array($request->input('subcategory_id')) ? $request->input('subcategory_id') : [],
@@ -110,6 +113,7 @@ class NewsController extends Controller
       $article->featured = !is_null($request->input('featured')) && $request->input('featured') == 1 ? 1 : 0;
       $isSave = $article->update($request->all());
       $article->allCategories()->sync($ids);
+      $article->tags()->sync($request->input('tag_id'));
 
       \Session::flash('class', 'success');
       \Session::flash('message', 'Article successfully saved.');

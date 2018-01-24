@@ -126,10 +126,15 @@
             placeholder: "Select a category"
           });
 
+          $('.tags').select2({
+            placeholder: "Select a tags"
+          });
+
           //populate select2
           $('#category_id').val({!! $article->format('categories') !!}).trigger('change');
           $('#subcategory_id').val({!! $article->format('subcategories') !!}).trigger('change');
           $('#subsubcategory_id').val({!! $article->format('subsubcategories') !!}).trigger('change');
+          $('#tag_id').val({!! $article->format('tags') !!}).trigger('change');
 
           $('#lfm').filemanager('image');
 

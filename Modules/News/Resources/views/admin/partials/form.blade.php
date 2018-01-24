@@ -131,6 +131,20 @@
 
       </div>
     </div>
+
+    <div class="col-lg-6">
+      <label>
+        Tags:
+      </label>
+
+      <select class="form-control m-bootstrap-select m_selectpicker tags" multiple name="tag_id[]" id="tag_id">
+        @foreach ($tags as $tag)
+            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+        @endforeach
+      </select>
+
+    </div>
+
   </div>
 
   <div class="form-group m-form__group row">

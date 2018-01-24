@@ -33,6 +33,11 @@ class News extends Model
        return $this->belongsToMany('Modules\News\Entities\Models\NewsCategory', 'news_categories_pivot', 'article_id', 'category_id')->where('parent_id', null)->where('subparent_id', '<>', null);
     }
 
+    public function tags()
+    {
+      return $this->belongsToMany('Modules\News\Entities\Models\NewsTag', 'news_tags_pivot', 'article_id', 'news_tag_id');
+    }
+
 
     public function format($relation)
     {

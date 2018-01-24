@@ -6,7 +6,7 @@
 						<div class="m-stack__item m-brand  m-brand--skin-dark ">
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
-									<a href="index.html" class="m-brand__logo-wrapper">
+									<a href="{{ route('admin.dashboard') }} " class="m-brand__logo-wrapper">
 										<img alt="" src="{{ asset('assets/admin/demo/default/media/img/logo/logo_default_dark.png') }}"/>
 									</a>
 								</div>
@@ -1015,7 +1015,7 @@
 																</li>
 																<li class="m-nav__separator m-nav__separator--fit"></li>
 																<li class="m-nav__item">
-																	
+
 
 																	<a href="#" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
 																			onclick="event.preventDefault();

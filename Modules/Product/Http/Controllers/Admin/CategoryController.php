@@ -36,7 +36,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('product::admin.category.create');
+        $categories = ProductCategory::where(['parent_id' => null, 'subparent_id' => null])->orderBy('order_num', 'ASC')->get();
+
+        return view('product::admin.category.create', compact('categories'));
     }
 
     /**
@@ -46,6 +48,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+      //dd($request->all());
+      $category = ProductCategory::create($request->all());
+
+      // \Session::flash('class','success');
+      // \Session::flash('message','Product successfully saved.');
+      return redirect()->route('admin.productcategory.index');
+      //return redirect()->route('admin.productcategory.edit', $category->id);
     }
 
     /**

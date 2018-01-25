@@ -243,6 +243,3 @@
 
 @stop
 
-@section('scripts')
-  <script src="{{  Module::asset('product:js/html-table.js') }}" type="text/javascript"></script>
-@endsection

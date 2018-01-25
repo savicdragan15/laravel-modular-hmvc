@@ -744,14 +744,21 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--end::Page Snippets -->
 
    <script>
-        $(document).ready(function(){
+         //$(document).ready(function(){
             var link = $('.m-menu__nav').find("a[href$='{{ \Request::url() }}']");
+						console.log(link.attr('data-subsubparent'));
+
             link.parent().addClass('m-menu__item--active');
 
-            link.parent('div').css('display', 'block');
+            //link.parent('div').css('display', 'block');
             link.parent().parent().parent().parent().addClass('m-menu__item--expanded m-menu__item--open');
 
-        });
+						if(link.attr('data-subsubparent') == 'true') {
+							link.parent().parent().parent().parent().addClass('m-menu__item--expanded m-menu__item--open').parent('ul').parent().parent().addClass('m-menu__item--expanded m-menu__item--open');
+						}
+
+
+         //});
    </script>
 
 	 @yield('scripts')

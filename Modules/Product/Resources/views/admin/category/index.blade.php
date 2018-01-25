@@ -167,34 +167,6 @@
 
 
                 <div class="m-section__content">
-                  <ol class="sortable">
-                    @foreach($categories as $category)
-                        <li><div>{{ $category->name }}</div></li>
-                    @endforeach
-                    </ol>
-
-
-                  <ol class="sortable">
-                    {{-- category --}}
-                  	{{-- <li><div>Some content</div></li> --}}
-
-                  	<li>
-                  		<div>Coloration</div>
-                  		<ol>
-
-                  			<li>
-                          <div>Results</div>
-                          <ol>
-                            <li><div>Some sub sub item</div></li>
-                          </ol>
-                        </li>
-
-                  			<li><div>Fransize</div></li>
-                  		</ol>
-                  	</li>
-
-                  	<li><div>Some content</div></li>
-                  </ol>
                 </div>
 
               </div>
@@ -218,7 +190,9 @@
             handle: 'div',
             items: 'li',
             toleranceElement: '> div',
-            maxLevels: 3
+            maxLevels: 2,
+            protectRoot: true,
+            startCollapsed: true
           });
 
       });

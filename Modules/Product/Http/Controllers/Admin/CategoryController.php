@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = ProductCategory::where(['parent_id' => null, 'subparent_id' => null])->orderBy('order_num', 'ASC')->get();
-
+        
         return view('product::admin.category.index', compact('categories'));
     }
 

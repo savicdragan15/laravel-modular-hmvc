@@ -28,7 +28,7 @@
                           <li class="m-nav__item">
                                   <a href="" class="m-nav__link">
                                           <span class="m-nav__link-text">
-                                                  Product
+                                                  Categories
                                           </span>
                                   </a>
                           </li>
@@ -38,7 +38,7 @@
                           <li class="m-nav__item">
                                   <a href="" class="m-nav__link">
                                           <span class="m-nav__link-text">
-                                                  All products
+                                                  All Categories
                                           </span>
                                   </a>
                           </li>
@@ -49,11 +49,11 @@
     						 Insert new Product
   					</a> --}}
 
-            <a href="{{ route('admin.product.create') }}" class="btn btn-success m-btn m-btn--icon m-btn--wide">
+            <a href="{{ route('admin.productcategory.create') }}" class="btn btn-success m-btn m-btn--icon m-btn--wide">
   					<span>
   						<i class="la la-plus-square"></i>
   						<span>
-  							Create new Product
+  							Create new Category
   						</span>
   					</span>
   					</a>
@@ -71,14 +71,14 @@
               <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                   <h3 class="m-portlet__head-text">
-                    All products
+                    All categories
                     <small>
-                      List all products
+                      List all categories
                     </small>
                   </h3>
                 </div>
               </div>
-              <div class="m-portlet__head-tools">
+              {{-- <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                   <li class="m-portlet__nav-item">
                     <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
@@ -155,7 +155,7 @@
                     </div>
                   </li>
                 </ul>
-              </div>
+              </div> --}}
             </div>
 
             <div class="m-portlet__body">
@@ -167,6 +167,9 @@
 
 
                 <div class="m-section__content">
+
+                    
+
                 </div>
 
               </div>
@@ -181,19 +184,8 @@
 
 
 @section('scripts')
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="{{ asset('assets/admin/jquery.mjs.nestedSortable.js') }}" type="text/javascript"></script>
   <script type="text/javascript">
-        $(document).ready(function(){
-
-          $('.sortable').nestedSortable({
-            handle: 'div',
-            items: 'li',
-            toleranceElement: '> div',
-            maxLevels: 2,
-            protectRoot: true,
-            startCollapsed: true
-          });
+      $(document).ready(function(){
 
       });
   </script>

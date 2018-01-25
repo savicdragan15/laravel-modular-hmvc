@@ -64,7 +64,7 @@
 														</a>
 													</li>
 
-                          <li class="m-menu__item " aria-haspopup="true">
+                          {{-- <li class="m-menu__item " aria-haspopup="true">
 														<a href="" class="m-menu__link" data-subsubparent='true'>
 															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 																<span></span>
@@ -73,9 +73,9 @@
 																SubCategories
 															</span>
 														</a>
-													</li>
+													</li> --}}
 
-                          <li class="m-menu__item " aria-haspopup="true">
+                          {{-- <li class="m-menu__item " aria-haspopup="true">
                             <a href="" class="m-menu__link" data-subsubparent='true'>
                               <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                 <span></span>
@@ -84,7 +84,18 @@
                                 SubSubCategories
                               </span>
                             </a>
-                          </li>
+                          </li> --}}
+
+                          <li class="m-menu__item " aria-haspopup="true">
+														<a href="{{ route('admin.productcategory.create') }}" class="m-menu__link" data-subsubparent='true'>
+															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																<span></span>
+															</i>
+															<span class="m-menu__link-text">
+																Create category
+															</span>
+														</a>
+													</li>
 
 												</ul>
 											</div>

@@ -18,7 +18,7 @@ class CreateProductImagesTable extends Migration
             $table->string('name');
 
             $table->integer('product_id')->unsigned()->nullable();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('set null');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
             $table->integer('order_num')->default(0);
             $table->tinyInteger('active')->default(0)->comment = '1 - active, 0 - inactive';

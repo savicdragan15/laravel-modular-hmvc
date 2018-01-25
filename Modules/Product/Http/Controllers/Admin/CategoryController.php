@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = ProductCategory::where(['parent_id' => null, 'subparent_id' => null])->orderBy('order_num', 'ASC')->get();
-        
+
         return view('product::admin.category.index', compact('categories'));
     }
 
@@ -81,5 +81,32 @@ class CategoryController extends Controller
      */
     public function destroy()
     {
+    }
+
+    public function active(Request $request, $id)
+    {
+        $active = $request->input('active');
+
+        $category = ProductCategory::findOrFail($id);
+        $category->active = $active;
+
+
+        if(!$category->save()) {
+          return [
+            'id' => $id,
+            'error' => true,
+            'message' => 'Cateogry unsuccessfully updated!'
+          ];
+        }
+
+        return [
+          'id' => $id,
+          'error' => false,
+          'active' => $category->active ? 0 : 1,
+          'text' => $category->active ? 'Active' : 'Inactive',
+          'class' => $category->active ? 'm-badge--success' : 'm-badge--danger',
+          'message' => 'Cateogry successfully updated!'
+        ];
+
     }
 }

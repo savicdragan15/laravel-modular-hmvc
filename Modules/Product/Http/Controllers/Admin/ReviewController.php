@@ -82,4 +82,31 @@ class ReviewController extends Controller
     public function destroy()
     {
     }
+
+    public function active(Request $request, $id)
+    {
+        $active = $request->input('active');
+
+        $review = ProductReview::findOrFail($id);
+        $review->active = $active;
+
+
+        if(!$review->save()) {
+          return [
+            'id' => $id,
+            'error' => true,
+            'message' => 'Review unsuccessfully updated!'
+          ];
+        }
+
+        return [
+          'id' => $id,
+          'error' => false,
+          'active' => $review->active ? 0 : 1,
+          'text' => $review->active ? 'Active' : 'Inactive',
+          'class' => $review->active ? 'm-badge--success' : 'm-badge--danger',
+          'message' => 'Review successfully updated!'
+        ];
+
+    }
 }

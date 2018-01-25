@@ -119,7 +119,7 @@
                                       <i> {{ $review->created_at ? $review->created_at->format('d.m.Y. H:i') : '/' }} </i>
       															</td>
                                     <td class="text-center">
-                                      {!! $review->active ? '<span class="m-badge  m-badge--success m-badge--wide">Active</span>' : '<span class="m-badge  m-badge--danger m-badge--wide">Inactive</span>' !!}
+                                      {!! $review->active ? '<span id="active-'.$review->id.'" data-value="0" data-url="'.route('admin.productreview.active', ['id' => $review->id]).'" class="m-badge active  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$review->id.'" data-value="1" data-url="'.route('admin.productreview.active', ['id' => $review->id]).'" class="m-badge active  m-badge--danger m-badge--wide">Inactive</span>' !!}
                                     </td>
                                     <td></td>
                                   </tr>

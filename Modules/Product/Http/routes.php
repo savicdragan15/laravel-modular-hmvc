@@ -26,3 +26,9 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin/productimage', 'namespac
 {
     Route::post('active', 'Admin\ImageController@active')->name('admin.productimage.active');
 });
+
+// Admin productreview custom routes
+Route::group(['middleware' => 'web', 'prefix' => 'admin/productreview', 'namespace' => 'Modules\Product\Http\Controllers'], function()
+{
+    Route::post('active/{id}', 'Admin\ReviewController@active')->name('admin.productreview.active');
+});

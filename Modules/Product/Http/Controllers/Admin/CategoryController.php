@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Product\Entities\Models\ProductCategory;
+use Modules\Product\Http\Requests\CreateCategoryRequest;
+use Modules\Product\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -46,7 +48,7 @@ class CategoryController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
       $category = ProductCategory::create($request->all());
 
@@ -82,7 +84,7 @@ class CategoryController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
       $category = ProductCategory::findOrFail($id);
       $category->update($request->all());

@@ -44,12 +44,12 @@
               <i class="fa fa-chevron-right"></i>
           </span>
           <input type="text" name="slug" class="form-control m-input {{ $errors->has('slug') ? 'has-error' : '' }} " placeholder="Slug" value="{{ isset($category) ? $category->slug : old('slug') }}">
-          @if($errors->has('slug'))
-              <span class="m-form__help has-error">
-                 {{ $errors->first('slug') }}
-              </span>
-          @endif
         </div>
+        @if($errors->has('slug'))
+            <span class="m-form__help has-error">
+               {{ $errors->first('slug') }}
+            </span>
+        @endif
 
       </div>
 
@@ -118,7 +118,6 @@
         <textarea name="seo_description" class="form-control m-input m-input--air"  rows="10">{!! isset($category) ? $category->seo_description : old('seo_description') !!}</textarea>
       </div>
   </div>
-    
-    
-</div>
 
+
+</div>

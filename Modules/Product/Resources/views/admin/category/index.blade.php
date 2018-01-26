@@ -168,7 +168,7 @@
 
                 <div class="m-section__content">
                   <div class="table-responsive ">
-                  <table class="table m-table m-table--head-bg-brand table-bordered table-hover">
+                  <table class="table m-table m-table--head-bg-brand table-bordered">
                     <thead>
                       <tr>
                         <th class="text-center">
@@ -193,7 +193,7 @@
                     </thead>
                     <tbody>
                       @foreach ($categories as $category)
-                        <tr>
+                        <tr class="btn-metal">
                           <td class="text-left">{{ $category->id }}</td>
                           <td>{{ $category->name }}</td>
                           <td class="text-center"><i> {{ $category->created_at ? $category->created_at->format('d.m.Y. H:i') : '/' }} </i></td>
@@ -211,7 +211,7 @@
                           </td>
                         </tr>
                         @foreach($category->subcategories as $subcategory)
-                          <tr>
+                          <tr class="btn-secondary">
                             <td class="text-center">{{ $subcategory->id }}</td>
                             <td>{{ $subcategory->name }}</td>
                             <td class="text-center"><i> {{ $subcategory->created_at ? $subcategory->created_at->format('d.m.Y. H:i') : '/' }} </i></td>
@@ -229,7 +229,7 @@
                             </td>
                           </tr>
                           @foreach($subcategory->subsubcategories as $subsubcategory)
-                          <tr>
+                          <tr class="btn-light">
                             <td class="text-right">{{ $subsubcategory->id }}</td>
                             <td>{{ $subsubcategory->name }}</td>
                             <td class="text-center"><i> {{ $subsubcategory->created_at ? $subsubcategory->created_at->format('d.m.Y. H:i') : '/' }} </i></td>

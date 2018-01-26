@@ -1,11 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-   All Categories
-@endsection
-
-@section('styles')
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   Edit category
 @endsection
 
 @section('content')
@@ -14,7 +10,7 @@
           <div class="d-flex align-items-center">
               <div class="mr-auto">
                   <h3 class="m-subheader__title m-subheader__title--separator">
-                          Product
+                          Category
                   </h3>
                   <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                           <li class="m-nav__item m-nav__item--home">
@@ -26,9 +22,9 @@
                                   -
                           </li>
                           <li class="m-nav__item">
-                                  <a href="" class="m-nav__link">
+                                  <a href="{{ route('admin.news.index') }}" class="m-nav__link">
                                           <span class="m-nav__link-text">
-                                                  Product
+                                                All categories
                                           </span>
                                   </a>
                           </li>
@@ -38,7 +34,7 @@
                           <li class="m-nav__item">
                                   <a href="" class="m-nav__link">
                                           <span class="m-nav__link-text">
-                                                  All products
+                                                  Edit category - {{ $category->name }}
                                           </span>
                                   </a>
                           </li>
@@ -46,16 +42,41 @@
           </div>
           <div>
 
+            {{-- @if(config('product.has_more_image'))
+              <a href="{{ route('admin.productimage.edit', ['id' => $article->id]) }}" class="btn btn-brand m-btn m-btn--icon m-btn--wide">
+    					<span>
+    						<i class="la la-image"></i>
+    						<span>
+    							 Product images
+    						</span>
+    					</span>
+    					</a>
+            @endif --}}
+
+            <a href="{{ route('admin.news.create') }}" class="btn btn-success m-btn m-btn--icon m-btn--wide">
+  					<span>
+  						<i class="la la-plus-square"></i>
+  						<span>
+  							Create new Article
+  						</span>
+  					</span>
+  					</a>
+
   				</div>
-          </div>
+        </div>
   </div>
-  <!-- END: Subheader -->
 
 
   <div class="m-content">
 
+    @if(Session::has('message'))
+      {{-- @include('product::admin.partials.notification') --}}
+    @endif
+
+    {{ debug($category) }}
+
     <div class="row">
-    <div class="col-md-12">
+      <div class="col-md-12">
         <div class="m-portlet">
               <div class="m-portlet__head">
                       <div class="m-portlet__head-caption">
@@ -64,22 +85,24 @@
                                               <i class="la la-gear"></i>
                                       </span>
                                       <h3 class="m-portlet__head-text">
-                                              Create new product
+                                              Edit article - {{ $category->name }}
                                       </h3>
                               </div>
                       </div>
               </div>
     <!--begin::Form-->
-    <form action="{{ route('admin.productcategory.store') }}" method="POST" class="m-form">
+    <form action="{{ route('admin.productcategory.update', ['id' => $category->id]) }}" method="POST" class="m-form">
             {{ csrf_field() }}
+            {{ method_field('PUT') }}
             @include('product::admin.category.form')
+
             <div class="m-portlet__foot m-portlet__foot--fit">
                 <div class="m-form__actions m-form__actions">
                     <button class="btn btn-brand m-btn m-btn--custom m-btn--icon pull-right" type="submit">
                       <span>
                         <i class="fa fa-save"></i>
                         <span>
-                          Create
+                          Save
                         </span>
                       </span>
                     </button>
@@ -87,24 +110,26 @@
             </div>
     </form>
     <!--end::Form-->
+    </div>
       </div>
-  </div>
-  </div>
-
+    </div>
   </div>
 @endsection
 
-
 @section('scripts')
   <script type="text/javascript">
-      $(document).ready(function(){
-         // $('.m_selectpicker').selectpicker();
 
+       $(document).ready(function(){
+         //initialize select2
           $('.m_selectpicker').select2({
-            placeholder: "Select a category",
-            allowClear: true
+            placeholder: "Select a category"
           });
 
-        });
+          //populate select2
+          $('#parent_id').val([{!! $category->parent_id !!}]).trigger('change');
+          $('#subparent_id').val([{!! $category->subparent_id !!}]).trigger('change');
+
+       });
+
   </script>
 @endsection

@@ -194,7 +194,7 @@
                     <tbody>
                       @foreach ($categories as $category)
                         <tr>
-                          <td class="text-center">{{ $category->id }}</td>
+                          <td class="text-left">{{ $category->id }}</td>
                           <td>{{ $category->name }}</td>
                           <td class="text-center"><i> {{ $category->created_at ? $category->created_at->format('d.m.Y. H:i') : '/' }} </i></td>
                           <td class="text-center"><i> {{ $category->updated_at ? $category->updated_at->format('d.m.Y. H:i') : '/' }} </i></td>
@@ -210,6 +210,44 @@
                             </a>
                           </td>
                         </tr>
+                        @foreach($category->subcategories as $subcategory)
+                          <tr>
+                            <td class="text-center">{{ $subcategory->id }}</td>
+                            <td>{{ $subcategory->name }}</td>
+                            <td class="text-center"><i> {{ $subcategory->created_at ? $subcategory->created_at->format('d.m.Y. H:i') : '/' }} </i></td>
+                            <td class="text-center"><i> {{ $subcategory->updated_at ? $subcategory->updated_at->format('d.m.Y. H:i') : '/' }} </i></td>
+                            <td class="text-center">
+                              {!! $subcategory->active ? '<span id="active-'.$subcategory->id.'" data-value="0" data-url="'.route('admin.productcategory.active', ['id' => $subcategory->id]).'" class="m-badge active  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$subcategory->id.'" data-value="1" data-url="'.route('admin.productcategory.active', ['id' => $subcategory->id]).'" class="m-badge active  m-badge--danger m-badge--wide">Inactive</span>' !!}
+                            </td>
+                            <td class="text-center">
+                              <a href="{{ route('admin.productcategory.edit', ['id' => $subcategory->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
+                                <i class="la la-edit"></i>
+                              </a>
+                              <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                                <i class="la la-trash"></i>
+                              </a>
+                            </td>
+                          </tr>
+                          @foreach($subcategory->subsubcategories as $subsubcategory)
+                          <tr>
+                            <td class="text-right">{{ $subsubcategory->id }}</td>
+                            <td>{{ $subsubcategory->name }}</td>
+                            <td class="text-center"><i> {{ $subsubcategory->created_at ? $subsubcategory->created_at->format('d.m.Y. H:i') : '/' }} </i></td>
+                            <td class="text-center"><i> {{ $subsubcategory->updated_at ? $subsubcategory->updated_at->format('d.m.Y. H:i') : '/' }} </i></td>
+                            <td class="text-center">
+                              {!! $subsubcategory->active ? '<span id="active-'.$subsubcategory->id.'" data-value="0" data-url="'.route('admin.productcategory.active', ['id' => $subsubcategory->id]).'" class="m-badge active  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$subsubcategory->id.'" data-value="1" data-url="'.route('admin.productcategory.active', ['id' => $subsubcategory->id]).'" class="m-badge active  m-badge--danger m-badge--wide">Inactive</span>' !!}
+                            </td>
+                            <td class="text-center">
+                              <a href="{{ route('admin.productcategory.edit', ['id' => $subsubcategory->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
+                                <i class="la la-edit"></i>
+                              </a>
+                              <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                                <i class="la la-trash"></i>
+                              </a>
+                            </td>
+                          </tr>
+                         @endforeach
+                        @endforeach
                       @endforeach
                     </tbody>
                   </table>

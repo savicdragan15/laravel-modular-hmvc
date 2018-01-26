@@ -48,13 +48,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-      //dd($request->all());
       $category = ProductCategory::create($request->all());
 
-      // \Session::flash('class','success');
-      // \Session::flash('message','Product successfully saved.');
-      return redirect()->route('admin.productcategory.index');
-      //return redirect()->route('admin.productcategory.edit', $category->id);
+      \Session::flash('class','success');
+      \Session::flash('message','Product successfully saved.');
+
+      return redirect()->route('admin.productcategory.edit', $category->id);
     }
 
     /**
@@ -70,9 +69,12 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('product::edit');
+        $category = ProductCategory::findOrFail($id);
+        $categories = ProductCategory::where(['parent_id' => null, 'subparent_id' => null])->orderBy('order_num', 'ASC')->get();
+
+        return view('product::admin.category.edit', compact('category', 'categories'));
     }
 
     /**
@@ -80,8 +82,13 @@ class CategoryController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+      $category = ProductCategory::findOrFail($id);
+      $category->update($request->all());
+
+      return redirect()->route('admin.productcategory.edit', $id);
+
     }
 
     /**

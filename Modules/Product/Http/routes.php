@@ -31,6 +31,8 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin/productimage', 'namespac
 Route::group(['middleware' => 'web', 'prefix' => 'admin/productcategory', 'namespace' => 'Modules\Product\Http\Controllers'], function()
 {
     Route::post('active/{id}', 'Admin\CategoryController@active')->name('admin.productcategory.active');
+    Route::get('reorder/category', 'Admin\CategoryController@reorder')->name('admin.productcategory.reorder');
+
 });
 
 

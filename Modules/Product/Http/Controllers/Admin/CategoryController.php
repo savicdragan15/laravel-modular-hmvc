@@ -99,6 +99,21 @@ class CategoryController extends Controller
     {
     }
 
+    public function reorder(Request $request)
+    {
+        $categories = ProductCategory::where(['parent_id' => null, 'subparent_id' => null])->get();
+
+        if(!is_null($request->input('parent_id'))) {
+          $categories = ProductCategory::where('parent_id', $request->input('parent_id'))->get();
+        }
+
+        if(!is_null($request->input('subparent_id'))) {
+          $categories = ProductCategory::where('subparent_id', $request->input('subparent_id'))->get();
+        }
+
+        return view('product::admin.category.reorder', compact('categories'));
+    }
+
     public function active(Request $request, $id)
     {
         $active = $request->input('active');

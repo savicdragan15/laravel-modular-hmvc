@@ -167,7 +167,108 @@
 
 
                 <div class="m-section__content">
-                  <div class="table-responsive ">
+                  <div class="m-portlet">
+									<div class="m-portlet__head">
+										<div class="m-portlet__head-caption">
+											<div class="m-portlet__head-title">
+												<h3 class="m-portlet__head-text">
+													All categories
+												</h3>
+											</div>
+										</div>
+									</div>
+									<div class="m-portlet__body">
+										<ul class="nav nav-pills nav-fill" role="tablist">
+                    @foreach ($categories as $category)
+											<li class="nav-item">
+												<a class="nav-link {{ $loop->first ? 'active' : '' }}" data-toggle="tab" href="#category-{{ $category->id }}">
+													{{ $category->name }}
+												</a>
+											</li>
+                    @endforeach
+										</ul>
+                    </ul>
+										<div class="tab-content">
+                      @foreach ($categories as $category)
+											<div class="tab-pane {{ $loop->first ? 'active' : '' }}" id="category-{{ $category->id }}" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table m-table m-table--head-bg-brand table-bordered">
+                              <thead>
+                                <tr>
+                                  <th class="text-center">
+                                    #
+                                  </th>
+                                  <th>
+                                    Name
+                                  </th>
+                                  <th class="text-center">
+                                    Created at
+                                  </th>
+                                  <th class="text-center">
+                                    Updated at
+                                  </th>
+                                  <th class="text-center"> Reorder </th>
+                                  <th class="text-center">
+                                    Active
+                                  </th>
+                                  <th class="text-center">
+                                    Actions
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach($category->subcategories as $subcategory)
+                                  <tr class="btn-secondary">
+                                    <td class="text-center">{{ $subcategory->id }}</td>
+                                    <td>{{ $subcategory->name }}</td>
+                                    <td class="text-center"><i> {{ $subcategory->created_at ? $subcategory->created_at->format('d.m.Y. H:i') : '/' }} </i></td>
+                                    <td class="text-center"><i> {{ $subcategory->updated_at ? $subcategory->updated_at->format('d.m.Y. H:i') : '/' }} </i></td>
+                                    <td class="text-center">
+                                      <a href="{{ route('admin.productcategory.reorder') }}?subparent_id={{ $subcategory->id }}" target="_blank" class="btn m-badge--brand m-badge m-badge--wide">Reorder</a>
+                                    </td>
+                                    <td class="text-center">
+                                      {!! $subcategory->active ? '<span id="active-'.$subcategory->id.'" data-value="0" data-url="'.route('admin.productcategory.active', ['id' => $subcategory->id]).'" class="m-badge active-inactive  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$subcategory->id.'" data-value="1" data-url="'.route('admin.productcategory.active', ['id' => $subcategory->id]).'" class="m-badge active-inactive  m-badge--danger m-badge--wide">Inactive</span>' !!}
+                                    </td>
+                                    <td class="text-center">
+                                      <a href="{{ route('admin.productcategory.edit', ['id' => $subcategory->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
+                                        <i class="la la-edit"></i>
+                                      </a>
+                                      <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                                        <i class="la la-trash"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                  @foreach($subcategory->subsubcategories as $subsubcategory)
+                                  <tr class="btn-light">
+                                    <td class="text-right">{{ $subsubcategory->id }}</td>
+                                    <td>{{ $subsubcategory->name }}</td>
+                                    <td class="text-center"><i> {{ $subsubcategory->created_at ? $subsubcategory->created_at->format('d.m.Y. H:i') : '/' }} </i></td>
+                                    <td class="text-center"><i> {{ $subsubcategory->updated_at ? $subsubcategory->updated_at->format('d.m.Y. H:i') : '/' }} </i></td>
+                                    <td></td>
+                                    <td class="text-center">
+                                      {!! $subsubcategory->active ? '<span id="active-'.$subsubcategory->id.'" data-value="0" data-url="'.route('admin.productcategory.active', ['id' => $subsubcategory->id]).'" class="m-badge active-inactive  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$subsubcategory->id.'" data-value="1" data-url="'.route('admin.productcategory.active', ['id' => $subsubcategory->id]).'" class="m-badge active-inactive  m-badge--danger m-badge--wide">Inactive</span>' !!}
+                                    </td>
+                                    <td class="text-center">
+                                      <a href="{{ route('admin.productcategory.edit', ['id' => $subsubcategory->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
+                                        <i class="la la-edit"></i>
+                                      </a>
+                                      <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                                        <i class="la la-trash"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                 @endforeach
+                                @endforeach
+                              </tbody>
+                            </table>
+                        </div>
+											</div>
+                      @endforeach
+										</div>
+									</div>
+								</div>
+
+                  {{-- <div class="table-responsive ">
                   <table class="table m-table m-table--head-bg-brand table-bordered">
                     <thead>
                       <tr>
@@ -183,6 +284,7 @@
                         <th class="text-center">
                           Updated at
                         </th>
+                        <th class="text-center"> Reorder </th>
                         <th class="text-center">
                           Active
                         </th>
@@ -198,8 +300,9 @@
                           <td>{{ $category->name }}</td>
                           <td class="text-center"><i> {{ $category->created_at ? $category->created_at->format('d.m.Y. H:i') : '/' }} </i></td>
                           <td class="text-center"><i> {{ $category->updated_at ? $category->updated_at->format('d.m.Y. H:i') : '/' }} </i></td>
+                          <td>  </td>
                           <td class="text-center">
-                            {!! $category->active ? '<span id="active-'.$category->id.'" data-value="0" data-url="'.route('admin.productcategory.active', ['id' => $category->id]).'" class="m-badge active  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$category->id.'" data-value="1" data-url="'.route('admin.productcategory.active', ['id' => $category->id]).'" class="m-badge active  m-badge--danger m-badge--wide">Inactive</span>' !!}
+                            {!! $category->active ? '<span id="active-'.$category->id.'" data-value="0" data-url="'.route('admin.productcategory.active', ['id' => $category->id]).'" class="m-badge active-inactive  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$category->id.'" data-value="1" data-url="'.route('admin.productcategory.active', ['id' => $category->id]).'" class="m-badge active-inactive  m-badge--danger m-badge--wide">Inactive</span>' !!}
                           </td>
                           <td class="text-center">
                             <a href="{{ route('admin.productcategory.edit', ['id' => $category->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
@@ -216,8 +319,9 @@
                             <td>{{ $subcategory->name }}</td>
                             <td class="text-center"><i> {{ $subcategory->created_at ? $subcategory->created_at->format('d.m.Y. H:i') : '/' }} </i></td>
                             <td class="text-center"><i> {{ $subcategory->updated_at ? $subcategory->updated_at->format('d.m.Y. H:i') : '/' }} </i></td>
+                            <td></td>
                             <td class="text-center">
-                              {!! $subcategory->active ? '<span id="active-'.$subcategory->id.'" data-value="0" data-url="'.route('admin.productcategory.active', ['id' => $subcategory->id]).'" class="m-badge active  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$subcategory->id.'" data-value="1" data-url="'.route('admin.productcategory.active', ['id' => $subcategory->id]).'" class="m-badge active  m-badge--danger m-badge--wide">Inactive</span>' !!}
+                              {!! $subcategory->active ? '<span id="active-'.$subcategory->id.'" data-value="0" data-url="'.route('admin.productcategory.active', ['id' => $subcategory->id]).'" class="m-badge active-inactive  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$subcategory->id.'" data-value="1" data-url="'.route('admin.productcategory.active', ['id' => $subcategory->id]).'" class="m-badge active-inactive  m-badge--danger m-badge--wide">Inactive</span>' !!}
                             </td>
                             <td class="text-center">
                               <a href="{{ route('admin.productcategory.edit', ['id' => $subcategory->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
@@ -234,8 +338,9 @@
                             <td>{{ $subsubcategory->name }}</td>
                             <td class="text-center"><i> {{ $subsubcategory->created_at ? $subsubcategory->created_at->format('d.m.Y. H:i') : '/' }} </i></td>
                             <td class="text-center"><i> {{ $subsubcategory->updated_at ? $subsubcategory->updated_at->format('d.m.Y. H:i') : '/' }} </i></td>
+                            <td></td>
                             <td class="text-center">
-                              {!! $subsubcategory->active ? '<span id="active-'.$subsubcategory->id.'" data-value="0" data-url="'.route('admin.productcategory.active', ['id' => $subsubcategory->id]).'" class="m-badge active  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$subsubcategory->id.'" data-value="1" data-url="'.route('admin.productcategory.active', ['id' => $subsubcategory->id]).'" class="m-badge active  m-badge--danger m-badge--wide">Inactive</span>' !!}
+                              {!! $subsubcategory->active ? '<span id="active-'.$subsubcategory->id.'" data-value="0" data-url="'.route('admin.productcategory.active', ['id' => $subsubcategory->id]).'" class="m-badge active-inactive  m-badge--success m-badge--wide">Active</span>' : '<span id="active-'.$subsubcategory->id.'" data-value="1" data-url="'.route('admin.productcategory.active', ['id' => $subsubcategory->id]).'" class="m-badge active-inactive  m-badge--danger m-badge--wide">Inactive</span>' !!}
                             </td>
                             <td class="text-center">
                               <a href="{{ route('admin.productcategory.edit', ['id' => $subsubcategory->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
@@ -251,7 +356,7 @@
                       @endforeach
                     </tbody>
                   </table>
-                  </div>
+                  </div> --}}
                   {{-- {!! $categories->links() !!} --}}
                 </div>
 

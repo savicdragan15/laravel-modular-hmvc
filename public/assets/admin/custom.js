@@ -57,7 +57,7 @@ $(document).ready(function() {
 
   });
 
-  $('.active').on('click', function(){
+  $('.active-inactive').on('click', function(){
       //alert('active');
       var active = $(this).attr('data-value');
       var url = $(this).attr('data-url');

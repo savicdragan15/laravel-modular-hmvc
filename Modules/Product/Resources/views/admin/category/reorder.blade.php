@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-   All Categories
+   Reorder categories
 @endsection
 
 @section('styles')
@@ -162,9 +162,9 @@
           <div class="m-portlet__body">
 
             <div class="m-section">
-              <span class="m-section__sub">
+              {{-- <span class="m-section__sub">
                 Using the most basic table markup, here’s how tables look in Metronic:
-              </span>
+              </span> --}}
 
               <div class="m-section__content">
                 <ul id="categorysortable">
@@ -192,3 +192,4 @@
       });
   </script>
 @endsection
+

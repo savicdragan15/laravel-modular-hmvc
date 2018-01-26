@@ -103,17 +103,37 @@ class CategoryController extends Controller
 
     public function reorder(Request $request)
     {
-        $categories = ProductCategory::where(['parent_id' => null, 'subparent_id' => null])->get();
+        $categories = ProductCategory::where(['parent_id' => null, 'subparent_id' => null])->orderBy('order_num', 'ASC')->get();
+        $route = route('admin.productcategory.reorder');
 
         if(!is_null($request->input('parent_id'))) {
-          $categories = ProductCategory::where('parent_id', $request->input('parent_id'))->get();
+          $categories = ProductCategory::where('parent_id', $request->input('parent_id'))->orderBy('order_num', 'ASC')->get();
+          $route = route('admin.productcategory.reorder').'?parent_id='.$request->input('parent_id');
         }
 
         if(!is_null($request->input('subparent_id'))) {
-          $categories = ProductCategory::where('subparent_id', $request->input('subparent_id'))->get();
+          $categories = ProductCategory::where('subparent_id', $request->input('subparent_id'))->orderBy('order_num', 'ASC')->get();
+          $route = route('admin.productcategory.reorder').'?subparent_id='.$request->input('subparent_id');
         }
 
-        return view('product::admin.category.reorder', compact('categories'));
+        return view('product::admin.category.reorder', compact('categories', 'route'));
+    }
+
+    public function postReorder(Request $request)
+    {
+        $ids = $request->input('ids');
+
+        if(!empty($ids)) {
+
+          foreach ($ids as $key => $id) {
+             $category = ProductCategory::find($id);
+             $category->order_num = $key+1;
+             $category->save();
+          }
+
+        }
+
+        return redirect(\URL::previous());
     }
 
     public function active(Request $request, $id)

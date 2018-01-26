@@ -165,13 +165,33 @@
               {{-- <span class="m-section__sub">
                 Using the most basic table markup, here’s how tables look in Metronic:
               </span> --}}
-
               <div class="m-section__content">
-                <ul id="categorysortable">
+                  <form action="{{ $route }}" method="POST">
+                    <ul id="categorysortable">
+                    {{ csrf_field() }}
                     @foreach ($categories as $key => $category)
-                        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>{{ $category->name }}</li>
+                        <li class="ui-state-default">
+                          <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+                          <input type="hidden" name="ids[]" value="{{ $category->id }}">
+                          {{ $category->order_num  }}.  {{ $category->name }}
+                        </li>
                     @endforeach
-                </ul>
+                    </ul>
+                    <div class="m-portlet__foot m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions">
+                            <button class="btn btn-brand m-btn m-btn--custom m-btn--icon pull-right" type="submit">
+        											<span>
+        												<i class="fa fa-save"></i>
+        												<span>
+        													Save
+        												</span>
+        											</span>
+        										</button>
+                        </div>
+                    </div>
+
+                  </form>
+
               </div>
 
             </div>
@@ -192,4 +212,3 @@
       });
   </script>
 @endsection
-

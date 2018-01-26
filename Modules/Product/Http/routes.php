@@ -32,6 +32,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin/productcategory', 'names
 {
     Route::post('active/{id}', 'Admin\CategoryController@active')->name('admin.productcategory.active');
     Route::get('reorder/category', 'Admin\CategoryController@reorder')->name('admin.productcategory.reorder');
+    Route::post('reorder/category', 'Admin\CategoryController@postReorder')->name('admin.productcategory.reorder');
 
 });
 

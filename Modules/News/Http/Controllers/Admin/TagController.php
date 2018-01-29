@@ -93,8 +93,12 @@ class TagController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        $tag = NewsTag::findOrFail($id);
+        $tag->delete();
+
+        return redirect(\URL::previous());
     }
 
     public function active(Request $request, $id)

@@ -126,9 +126,13 @@
                                 <a href="{{ route('admin.newstag.edit', ['id' => $tag->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
                                   <i class="la la-edit"></i>
                                 </a>
-                                <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                                <button onclick="document.getElementById('delete-form-{{ $tag->id }}').submit();" type="submit" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
                                   <i class="la la-trash"></i>
-                                </a>
+                                </button>
+                                <form  id="delete-form-{{$tag->id}}" action="{{ route('admin.newstag.destroy', ['id' => $tag->id]) }}" method="post" style="display: none;">
+                                  {{ csrf_field() }}
+                                  {{ method_field('DELETE') }}
+                                </form>
                               </td>
 														</tr>
                           @endforeach

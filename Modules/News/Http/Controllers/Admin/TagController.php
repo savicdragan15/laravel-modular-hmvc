@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\News\Entities\Models\NewsTag;
+use Modules\News\Http\Requests\CreateTagRequest;
+use Modules\News\Http\Requests\UpdateTagRequest;
 
 class TagController extends Controller
 {
@@ -26,7 +28,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('news::create');
+        return view('news::admin.tag.create');
     }
 
     /**
@@ -34,8 +36,14 @@ class TagController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateTagRequest $request)
     {
+      $tag = NewsTag::create($request->all());
+
+      \Session::flash('class','success');
+      \Session::flash('message','Tag successfully saved.');
+
+      return redirect()->route('admin.newstag.edit', $tag->id);
     }
 
     /**
@@ -44,16 +52,18 @@ class TagController extends Controller
      */
     public function show()
     {
-        return view('news::show');
+        //return view('news::show');
     }
 
     /**
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('news::edit');
+        $tag = NewsTag::findOrFail($id);
+
+        return view('news::admin.tag.edit', compact('tag'));
     }
 
     /**
@@ -61,8 +71,22 @@ class TagController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(UpdateTagRequest $request, $id)
     {
+
+      $tag = NewsTag::findOrFail($id);
+      $tag->active = !is_null($request->input('active')) && $request->input('active') == 1 ? 1 : 0;
+      $isSave = $tag->update($request->all());
+
+      \Session::flash('class','success');
+      \Session::flash('message','Tag successfully saved.');
+
+      if(!$isSave){
+        \Session::flash('class','danger');
+        \Session::flash('message','Tag not saved.');
+      }
+
+      return redirect()->route('admin.newstag.edit', $id);
     }
 
     /**

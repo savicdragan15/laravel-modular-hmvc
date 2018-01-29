@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class NewsTag extends Model
 {
-    protected $fillable = [];
+    protected $fillable = ['name', 'slug', 'active'];
 }

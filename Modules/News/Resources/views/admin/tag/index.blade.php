@@ -62,7 +62,7 @@
   <div class="m-content">
 
       <div class="row">
-          <div class="col-lg-7">
+          <div class="col-lg-12">
               <div class="m-portlet">
 
                 <div class="m-portlet__head">
@@ -126,9 +126,9 @@
                                 <a href="{{ route('admin.newstag.edit', ['id' => $tag->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
                                   <i class="la la-edit"></i>
                                 </a>
-                                {{-- <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                                <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
                                   <i class="la la-trash"></i>
-                                </a> --}}
+                                </a>
                               </td>
 														</tr>
                           @endforeach
@@ -145,4 +145,3 @@
 
   </div>
 @endsection
-

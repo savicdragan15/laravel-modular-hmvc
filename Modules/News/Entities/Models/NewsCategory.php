@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class NewsCategory extends Model
 {
-    protected $fillable = [];
+    protected $fillable = ['name', 'slug', 'parent_id', 'subparent_id', 'seo_title', 'seo_description', 'seo_keywords', 'order_num', 'active'];
 
     public function subcategories()
     {

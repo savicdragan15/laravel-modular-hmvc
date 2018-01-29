@@ -91,15 +91,15 @@
 															<th>
 																Slug
 															</th>
-															<th>
-																Active
-															</th>
-                              <th>
+                              <th class="text-center">
                                 Created at
                               </th>
-                              <th>
+                              <th class="text-center">
                                 Updated at
                               </th>
+                              <th class="text-center">
+																Active
+															</th>
                               <th>
                                 Actions
                               </th>
@@ -145,3 +145,4 @@
 
   </div>
 @endsection
+

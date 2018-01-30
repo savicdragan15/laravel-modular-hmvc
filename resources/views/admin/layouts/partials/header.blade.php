@@ -41,7 +41,7 @@
 							<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-dark " id="m_aside_header_menu_mobile_close_btn">
 								<i class="la la-close"></i>
 							</button>
-							<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark "  >
+							{{-- <div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark "  >
 								<ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
 									<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
 										<a  href="#" class="m-menu__link m-menu__toggle">
@@ -626,12 +626,12 @@
 										</div>
 									</li>
 								</ul>
-							</div>
+							</div> --}}
 							<!-- END: Horizontal Menu -->								<!-- BEGIN: Topbar -->
 							<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-topbar__nav-wrapper">
 									<ul class="m-topbar__nav m-nav m-nav--inline">
-										<li class="
+										{{-- <li class="
 	m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
 	data-dropdown-toggle="click" data-dropdown-persistent="true" id="m_quicksearch" data-search-type="dropdown">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
@@ -661,8 +661,8 @@
 													</div>
 												</div>
 											</div>
-										</li>
-										<li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true">
+										</li> --}}
+										{{-- <li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true">
 											<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
 												<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
 												<span class="m-nav__link-icon">
@@ -870,8 +870,8 @@
 													</div>
 												</div>
 											</div>
-										</li>
-										<li class="m-nav__item m-topbar__quick-actions m-topbar__quick-actions--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"  data-dropdown-toggle="click">
+										</li> --}}
+										{{-- <li class="m-nav__item m-topbar__quick-actions m-topbar__quick-actions--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"  data-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
 												<span class="m-nav__link-icon">
@@ -927,14 +927,14 @@
 													</div>
 												</div>
 											</div>
-										</li>
+										</li> --}}
 										<li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-topbar__userpic">
 													<img src="{{ asset('assets/admin/app/media/img/users/user4.jpg') }}" class="m--img-rounded m--marginless m--img-centered" alt=""/>
 												</span>
 												<span class="m-topbar__username m--hide">
-													Nick
+													{{ Auth::guard('admin')->user()->name }}
 												</span>
 											</a>
 											<div class="m-dropdown__wrapper">
@@ -963,7 +963,7 @@
 																		Section
 																	</span>
 																</li>
-																<li class="m-nav__item">
+																{{-- <li class="m-nav__item">
 																	<a href="header/profile.html" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-profile-1"></i>
 																		<span class="m-nav__link-title">
@@ -979,41 +979,41 @@
 																			</span>
 																		</span>
 																	</a>
-																</li>
-																<li class="m-nav__item">
+																</li> --}}
+																{{-- <li class="m-nav__item">
 																	<a href="header/profile.html" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-share"></i>
 																		<span class="m-nav__link-text">
 																			Activity
 																		</span>
 																	</a>
-																</li>
-																<li class="m-nav__item">
+																</li> --}}
+																{{-- <li class="m-nav__item">
 																	<a href="header/profile.html" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-chat-1"></i>
 																		<span class="m-nav__link-text">
 																			Messages
 																		</span>
 																	</a>
-																</li>
-																<li class="m-nav__separator m-nav__separator--fit"></li>
-																<li class="m-nav__item">
+																</li> --}}
+																{{-- <li class="m-nav__separator m-nav__separator--fit"></li> --}}
+																{{-- <li class="m-nav__item">
 																	<a href="header/profile.html" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-info"></i>
 																		<span class="m-nav__link-text">
 																			FAQ
 																		</span>
 																	</a>
-																</li>
-																<li class="m-nav__item">
+																</li> --}}
+																{{-- <li class="m-nav__item">
 																	<a href="header/profile.html" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-lifebuoy"></i>
 																		<span class="m-nav__link-text">
 																			Support
 																		</span>
 																	</a>
-																</li>
-																<li class="m-nav__separator m-nav__separator--fit"></li>
+																</li> --}}
+																{{-- <li class="m-nav__separator m-nav__separator--fit"></li> --}}
 																<li class="m-nav__item">
 
 
@@ -1034,13 +1034,13 @@
 												</div>
 											</div>
 										</li>
-										<li id="m_quick_sidebar_toggle" class="m-nav__item">
+										{{-- <li id="m_quick_sidebar_toggle" class="m-nav__item">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-nav__link-icon">
 													<i class="flaticon-grid-menu"></i>
 												</span>
 											</a>
-										</li>
+										</li> --}}
 									</ul>
 								</div>
 							</div>

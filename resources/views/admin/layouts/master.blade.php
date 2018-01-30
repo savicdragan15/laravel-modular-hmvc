@@ -69,7 +69,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <!-- end:: Body -->
 <!-- begin::Footer -->
-			<footer class="m-grid__item		m-footer ">
+			{{-- <footer class="m-grid__item		m-footer ">
 				<div class="m-container m-container--fluid m-container--full-height m-page__container">
 					<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
 						<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
@@ -119,12 +119,12 @@ License: You must have a valid license purchased only from themeforest(the above
 						</div>
 					</div>
 				</div>
-			</footer>
+			</footer> --}}
 			<!-- end::Footer -->
 		</div>
 		<!-- end:: Page -->
     		        <!-- begin::Quick Sidebar -->
-		<div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light">
+		{{-- <div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light">
 			<div class="m-quick-sidebar__content m--hide">
 				<span id="m_quick_sidebar_close" class="m-quick-sidebar__close">
 					<i class="la la-close"></i>
@@ -704,7 +704,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 		<!-- end::Quick Sidebar -->
 	    <!-- begin::Scroll Top -->
 		<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">

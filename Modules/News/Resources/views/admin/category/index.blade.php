@@ -162,7 +162,7 @@
 
               <div class="m-section">
                 <span class="m-section__sub">
-                  Using the most basic table markup, here’s how tables look in Metronic:
+                  {{-- Using the most basic table markup, here’s how tables look in Metronic: --}}
                 </span>
 
 
@@ -240,7 +240,7 @@
                               </tbody>
                             </table>
                         </div>
-
+                        @if(!$category->subcategories->isEmpty())
                         <div class="table-responsive">
                             <table class="table m-table m-table--head-bg-brand table-bordered">
                               <thead>
@@ -314,6 +314,7 @@
                               </tbody>
                             </table>
                         </div>
+                      @endif
 											</div>
                       @endforeach
 										</div>
@@ -430,4 +431,3 @@
       });
   </script>
 @endsection
-

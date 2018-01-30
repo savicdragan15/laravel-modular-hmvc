@@ -122,7 +122,8 @@
        $(document).ready(function(){
          //initialize select2
           $('.m_selectpicker').select2({
-            placeholder: "Select a category"
+            placeholder: "Select a category",
+            allowClear: true
           });
 
           //populate select2

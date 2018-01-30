@@ -62,7 +62,7 @@
     @if(Session::has('message'))
       @include('news::admin.partials.notification')
     @endif
-    
+
     <div class="row">
       <div class="col-md-12">
         <div class="m-portlet">
@@ -79,7 +79,7 @@
                 </div>
               </div>
 
-              <div class="m-portlet__head-tools">
+              {{-- <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                   <li class="m-portlet__nav-item">
                     <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
@@ -156,7 +156,7 @@
                     </div>
                   </li>
                 </ul>
-              </div>
+              </div> --}}
             </div>
 
             <div class="m-portlet__body">

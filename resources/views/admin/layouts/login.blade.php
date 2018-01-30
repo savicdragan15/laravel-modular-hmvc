@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- 
+<!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
 Version: 5.0.6.1
 Author: KeenThemes
@@ -58,7 +58,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									Sign In To Admin
 								</h3>
 							</div>
-                                                    
+
                                                     @if (count($errors) > 0)
                                                         <div class="m-alert m-alert--outline alert alert-danger alert-dismissible" role="alert">
                                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
@@ -69,7 +69,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     @endif
 							<form class="m-login__form m-form" action="{{ route('admin.login.submit') }}" method="POST">
                                                                 {{ csrf_field() }}
-                                                                
+
 								<div class="form-group m-form__group">
                                                                         <input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off" value="{{ old('email') }}">
                                                                         @if ($errors->has('email'))
@@ -178,7 +178,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 							</form>
 						</div>
-						<div class="m-login__account">
+						{{-- <div class="m-login__account">
 							<span class="m-login__account-msg">
 								Don't have an account yet ?
 							</span>
@@ -186,7 +186,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<a href="javascript:;" id="m_login_signup" class="m-link m-link--light m-login__account-link">
 								Sign Up
 							</a>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>
@@ -195,7 +195,7 @@ License: You must have a valid license purchased only from themeforest(the above
     	<!--begin::Base Scripts -->
 		<script src="{{ asset('assets/admin/vendors/base/vendors.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('assets/admin/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
-		<!--end::Base Scripts -->   
+		<!--end::Base Scripts -->
         <!--begin::Page Snippets -->
 		<script src="{{ asset('assets/admin/snippets/pages/user/login.js') }}" type="text/javascript"></script>
 		<!--end::Page Snippets -->

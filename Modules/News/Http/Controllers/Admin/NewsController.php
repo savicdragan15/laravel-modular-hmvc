@@ -130,8 +130,20 @@ class NewsController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy(Request $request, $id)
     {
+      $article = News::findOrFail($id);
+      $isDelete = $article->delete();
+
+      \Session::flash('class', 'success');
+      \Session::flash('message', 'Article successfully deleted.');
+
+      if(!$isDelete){
+        \Session::flash('class', 'danger');
+        \Session::flash('message', 'Article not saved.');
+      }
+
+      return redirect(\URL::previous());
     }
 
     public function active(Request $request, $id)

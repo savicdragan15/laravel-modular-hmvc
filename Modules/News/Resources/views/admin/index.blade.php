@@ -59,6 +59,10 @@
   <!-- END: Subheader -->
 
   <div class="m-content">
+    @if(Session::has('message'))
+      @include('news::admin.partials.notification')
+    @endif
+    
     <div class="row">
       <div class="col-md-12">
         <div class="m-portlet">
@@ -179,9 +183,9 @@
                           <th>
                             Secondary title
                           </th>
-                          <th class="text-center">
+                          {{-- <th class="text-center">
                             Slug
-                          </th>
+                          </th> --}}
                           <th>
                             Author
                           </th>
@@ -206,7 +210,7 @@
                               <td class="text-center"> <img src="{{ $article->featured_image }}" alt="" width="30"> </td>
                               <td> {{ $article->name }} </td>
                               <td> {{ $article->name_secondary }} </td>
-                              <td> {{ $article->slug }} </td>
+                              {{-- <td> {{ $article->slug }} </td> --}}
                               <td> {{ $article->author->name or 'None' }} </td>
                               <td class="text-center"> <i> {{ $article->created_at ? $article->created_at->format('d.m.Y. H:i') : '/' }} </i> </td>
                               <td class="text-center"> <i> {{ $article->updated_at ? $article->updated_at->format('d.m.Y. H:i') : '/' }} </i> </td>
@@ -217,9 +221,13 @@
                                 <a href="{{ route('admin.news.edit', ['id' => $article->id]) }}" target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
                                   <i class="la la-edit"></i>
                                 </a>
-                                <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
+                                <button onclick="document.getElementById('delete-form-{{ $article->id }}').submit();" type="submit" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Delete">
                                   <i class="la la-trash"></i>
-                                </a>
+                                </button>
+                                <form  id="delete-form-{{$article->id}}" action="{{ route('admin.news.destroy', ['id' => $article->id]) }}" method="post" style="display: none;">
+                                  {{ csrf_field() }}
+                                  {{ method_field('DELETE') }}
+                                </form>
                               </td>
                             </tr>
                           @endforeach

@@ -60,6 +60,10 @@
 
 
   <div class="m-content">
+    
+    @if(Session::has('message'))
+      @include('news::admin.partials.notification')
+    @endif
 
       <div class="row">
           <div class="col-lg-12">
